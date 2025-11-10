@@ -1,0 +1,366 @@
+// ============================================
+// GLOBALS
+// ============================================
+let portfolioData = null;
+
+// ============================================
+// THEME MANAGEMENT
+// ============================================
+function initTheme() {
+  const stored = localStorage.getItem('theme');
+  const theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  document.documentElement.setAttribute('data-theme', theme);
+
+  const toggle = document.getElementById('theme-toggle');
+  toggle.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  });
+}
+
+// ============================================
+// NAV ACTIVE STATE
+// ============================================
+function initNavActiveState() {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${entry.target.id}`) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+
+  sections.forEach(section => observer.observe(section));
+}
+
+// ============================================
+// FETCH DATA
+// ============================================
+async function fetchData() {
+  try {
+    const response = await fetch('./mydata.json');
+    if (!response.ok) throw new Error('Failed to fetch data');
+    portfolioData = await response.json();
+    renderAll();
+  } catch (error) {
+    console.error('Error loading portfolio data:', error);
+    document.getElementById('hero-title').textContent = 'Unable to load portfolio';
+    document.getElementById('hero-tagline').textContent = 'Please check your data file.';
+  }
+}
+
+// ============================================
+// RENDER ALL SECTIONS
+// ============================================
+function renderAll() {
+  if (!portfolioData) return;
+
+  renderSEO();
+  renderHero();
+  renderAbout();
+  renderSkills();
+  renderProjects();
+  renderExperience();
+  renderTestimonials();
+  renderContact();
+  renderFooter();
+}
+
+// ============================================
+// SEO META TAGS
+// ============================================
+function renderSEO() {
+  if (!portfolioData.seo) return;
+
+  const { title, description, ogImage } = portfolioData.seo;
+  if (title) document.title = title;
+  if (description) {
+    document.querySelector('meta[name="description"]').setAttribute('content', description);
+    document.querySelector('meta[property="og:description"]').setAttribute('content', description);
+  }
+  if (title) document.querySelector('meta[property="og:title"]').setAttribute('content', title);
+  if (ogImage) document.querySelector('meta[property="og:image"]').setAttribute('content', ogImage);
+}
+
+// ============================================
+// HERO SECTION
+// ============================================
+function renderHero() {
+  const { brand, tagline } = portfolioData;
+
+  document.getElementById('brand').textContent = brand || 'Portfolio';
+  document.getElementById('hero-title').textContent = brand || 'Your Name';
+  document.getElementById('hero-tagline').textContent = tagline || '';
+}
+
+// ============================================
+// ABOUT SECTION
+// ============================================
+function renderAbout() {
+  if (!portfolioData.about) {
+    document.getElementById('about').style.display = 'none';
+    return;
+  }
+
+  const { avatar, bio } = portfolioData.about;
+  const avatarEl = document.getElementById('about-avatar');
+
+  if (avatar) {
+    avatarEl.src = avatar;
+    avatarEl.alt = `${portfolioData.brand} avatar`;
+    avatarEl.style.display = 'block';
+  }
+
+  document.getElementById('about-bio').textContent = bio || '';
+}
+
+// ============================================
+// SKILLS SECTION
+// ============================================
+function renderSkills() {
+  if (!portfolioData.skills || portfolioData.skills.length === 0) {
+    document.getElementById('skills').style.display = 'none';
+    return;
+  }
+
+  const container = document.getElementById('skills-grid');
+  container.innerHTML = portfolioData.skills.map(skillGroup => `
+    <div class="skill-group">
+      <h3>${skillGroup.group}</h3>
+      <div class="skill-items">
+        ${skillGroup.items.map(item => `<span class="skill-tag">${item}</span>`).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+// ============================================
+// PROJECTS SECTION
+// ============================================
+function renderProjects() {
+  if (!portfolioData.projects || portfolioData.projects.length === 0) {
+    document.getElementById('projects').style.display = 'none';
+    return;
+  }
+
+  const container = document.getElementById('projects-grid');
+  container.innerHTML = portfolioData.projects.map((project, index) => `
+    <article class="project-card" tabindex="0" data-project-index="${index}">
+      <img src="${project.image}" alt="${project.title}" class="project-image" loading="lazy">
+      <div class="project-content">
+        <h3 class="project-title">${project.title}</h3>
+        <p class="project-description">${project.short}</p>
+        <div class="project-tags">
+          ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+        </div>
+        <div class="project-links">
+          ${project.links.demo ? `<a href="${project.links.demo}" target="_blank" rel="noopener" class="btn btn-primary" onclick="event.stopPropagation()">View Demo</a>` : ''}
+          ${project.links.repo ? `<a href="${project.links.repo}" target="_blank" rel="noopener" class="btn btn-secondary" onclick="event.stopPropagation()">GitHub</a>` : ''}
+        </div>
+      </div>
+    </article>
+  `).join('');
+
+  // Add click handlers for modal
+  document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+      const index = parseInt(card.getAttribute('data-project-index'));
+      openProjectModal(index);
+    });
+
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        const index = parseInt(card.getAttribute('data-project-index'));
+        openProjectModal(index);
+      }
+    });
+  });
+}
+
+// ============================================
+// PROJECT MODAL
+// ============================================
+function openProjectModal(index) {
+  const project = portfolioData.projects[index];
+  if (!project.longText) return; // Only open modal if there's detailed content
+
+  const modal = document.getElementById('project-modal');
+  document.getElementById('modal-image').src = project.image;
+  document.getElementById('modal-image').alt = project.title;
+  document.getElementById('modal-title').textContent = project.title;
+  document.getElementById('modal-tags').innerHTML = project.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+  document.getElementById('modal-body').textContent = project.longText;
+  document.getElementById('modal-links').innerHTML = `
+    ${project.links.demo ? `<a href="${project.links.demo}" target="_blank" rel="noopener" class="btn btn-primary">View Demo</a>` : ''}
+    ${project.links.repo ? `<a href="${project.links.repo}" target="_blank" rel="noopener" class="btn btn-secondary">GitHub</a>` : ''}
+  `;
+
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeProjectModal() {
+  const modal = document.getElementById('project-modal');
+  modal.style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+
+// Modal event listeners
+document.getElementById('modal-close').addEventListener('click', closeProjectModal);
+document.getElementById('modal-overlay').addEventListener('click', closeProjectModal);
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeProjectModal();
+});
+
+// ============================================
+// EXPERIENCE SECTION
+// ============================================
+function renderExperience() {
+  if (!portfolioData.experience || portfolioData.experience.length === 0) {
+    document.getElementById('experience').style.display = 'none';
+    return;
+  }
+
+  const container = document.getElementById('experience-timeline');
+  container.innerHTML = portfolioData.experience.map(exp => {
+    const dateRange = `${formatDate(exp.start)} – ${exp.end === 'Present' ? 'Present' : formatDate(exp.end)}`;
+
+    return `
+      <article class="experience-item">
+        <div class="experience-header">
+          <div class="experience-company">${exp.company}</div>
+          <div class="experience-role">${exp.role}</div>
+          <div class="experience-date">${dateRange}</div>
+        </div>
+        ${exp.highlights ? `
+          <ul class="experience-highlights">
+            ${exp.highlights.map(h => `<li>${h}</li>`).join('')}
+          </ul>
+        ` : ''}
+      </article>
+    `;
+  }).join('');
+}
+
+function formatDate(dateStr) {
+  if (dateStr === 'Present') return 'Present';
+  const date = new Date(dateStr);
+  return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+}
+
+// ============================================
+// TESTIMONIALS SECTION
+// ============================================
+function renderTestimonials() {
+  if (!portfolioData.testimonials || portfolioData.testimonials.length === 0) {
+    document.getElementById('testimonials').style.display = 'none';
+    return;
+  }
+
+  const section = document.getElementById('testimonials');
+  section.style.display = 'block';
+
+  const container = document.getElementById('testimonials-grid');
+  container.innerHTML = portfolioData.testimonials.map(testimonial => `
+    <article class="testimonial-card">
+      <p class="testimonial-quote">"${testimonial.quote}"</p>
+      <div class="testimonial-author">${testimonial.name}</div>
+      <div class="testimonial-title">${testimonial.title}</div>
+    </article>
+  `).join('');
+}
+
+// ============================================
+// CONTACT SECTION
+// ============================================
+function renderContact() {
+  if (!portfolioData.contact) {
+    document.getElementById('contact').style.display = 'none';
+    return;
+  }
+
+  const { email, socials } = portfolioData.contact;
+
+  // Email buttons
+  if (email) {
+    document.getElementById('mailto-link').href = `mailto:${email}`;
+
+    document.getElementById('copy-email').addEventListener('click', () => {
+      navigator.clipboard.writeText(email).then(() => {
+        showToast('Email copied to clipboard!');
+      }).catch(err => {
+        console.error('Failed to copy email:', err);
+      });
+    });
+  } else {
+    document.querySelector('.contact-actions').style.display = 'none';
+  }
+
+  // Social links
+  if (socials && socials.length > 0) {
+    const container = document.getElementById('socials');
+    container.innerHTML = socials.map(social => `
+      <a href="${social.url}" target="_blank" rel="noopener" class="social-link">
+        ${getSocialIcon(social.name)}
+        ${social.name}
+      </a>
+    `).join('');
+  }
+}
+
+function getSocialIcon(name) {
+  const icons = {
+    'GitHub': '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>',
+    'LinkedIn': '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>',
+    'X': '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>',
+    'Twitter': '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>',
+    'Email': '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>'
+  };
+  return icons[name] || '';
+}
+
+function showToast(message) {
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.classList.add('show');
+
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 3000);
+}
+
+// ============================================
+// FOOTER
+// ============================================
+function renderFooter() {
+  const year = new Date().getFullYear();
+  document.getElementById('current-year').textContent = year;
+  document.getElementById('footer-brand').textContent = portfolioData.brand || '';
+}
+
+// ============================================
+// INIT
+// ============================================
+function init() {
+  initTheme();
+  initNavActiveState();
+  fetchData();
+}
+
+// Run on DOM ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
