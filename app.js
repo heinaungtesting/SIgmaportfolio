@@ -2,6 +2,9 @@
 // GLOBALS
 // ============================================
 let portfolioData = null;
+let scene, camera, renderer, particles, particleSystem;
+let geometricShapes = [];
+let animationId;
 
 // ============================================
 // THEME MANAGEMENT
@@ -17,6 +20,9 @@ function initTheme() {
     const next = current === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
     localStorage.setItem('theme', next);
+
+    // Update Three.js theme colors
+    updateThreeJSTheme();
   });
 }
 
@@ -350,12 +356,182 @@ function renderFooter() {
 }
 
 // ============================================
+// THREE.JS ANIMATIONS
+// ============================================
+function initThreeJS() {
+  const canvas = document.getElementById('bg-canvas');
+  if (!canvas || !window.THREE) return;
+
+  // Scene setup
+  scene = new THREE.Scene();
+  camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.z = 30;
+
+  renderer = new THREE.WebGLRenderer({
+    canvas: canvas,
+    alpha: true,
+    antialias: true
+  });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  // Create particle network
+  createParticleNetwork();
+
+  // Create floating geometric shapes
+  createGeometricShapes();
+
+  // Handle window resize
+  window.addEventListener('resize', onWindowResize);
+
+  // Start animation
+  animate();
+}
+
+function createParticleNetwork() {
+  const particleCount = 100;
+  const positions = new Float32Array(particleCount * 3);
+  const velocities = [];
+
+  for (let i = 0; i < particleCount; i++) {
+    positions[i * 3] = (Math.random() - 0.5) * 100;
+    positions[i * 3 + 1] = (Math.random() - 0.5) * 100;
+    positions[i * 3 + 2] = (Math.random() - 0.5) * 50;
+
+    velocities.push({
+      x: (Math.random() - 0.5) * 0.02,
+      y: (Math.random() - 0.5) * 0.02,
+      z: (Math.random() - 0.5) * 0.02
+    });
+  }
+
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+  // Get theme color
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark' ||
+    (window.matchMedia('(prefers-color-scheme: dark)').matches &&
+     !document.documentElement.getAttribute('data-theme'));
+
+  const particleColor = isDark ? 0x818cf8 : 0x6366f1;
+
+  const material = new THREE.PointsMaterial({
+    color: particleColor,
+    size: 2,
+    transparent: true,
+    opacity: 0.6,
+    blending: THREE.AdditiveBlending
+  });
+
+  particleSystem = new THREE.Points(geometry, material);
+  particleSystem.userData.velocities = velocities;
+  scene.add(particleSystem);
+}
+
+function createGeometricShapes() {
+  const shapes = [
+    { geometry: new THREE.TorusGeometry(3, 1, 16, 100), color: 0x667eea },
+    { geometry: new THREE.OctahedronGeometry(2), color: 0x764ba2 },
+    { geometry: new THREE.TetrahedronGeometry(2.5), color: 0x8b5cf6 },
+  ];
+
+  shapes.forEach((shapeData, index) => {
+    const material = new THREE.MeshBasicMaterial({
+      color: shapeData.color,
+      wireframe: true,
+      transparent: true,
+      opacity: 0.15
+    });
+
+    const mesh = new THREE.Mesh(shapeData.geometry, material);
+
+    // Position shapes
+    mesh.position.x = (index - 1) * 20;
+    mesh.position.y = Math.sin(index) * 10;
+    mesh.position.z = -20;
+
+    // Random rotation speeds
+    mesh.userData.rotationSpeed = {
+      x: Math.random() * 0.01,
+      y: Math.random() * 0.01,
+      z: Math.random() * 0.01
+    };
+
+    geometricShapes.push(mesh);
+    scene.add(mesh);
+  });
+}
+
+function animate() {
+  animationId = requestAnimationFrame(animate);
+
+  // Animate particles
+  if (particleSystem) {
+    const positions = particleSystem.geometry.attributes.position.array;
+    const velocities = particleSystem.userData.velocities;
+
+    for (let i = 0; i < positions.length / 3; i++) {
+      positions[i * 3] += velocities[i].x;
+      positions[i * 3 + 1] += velocities[i].y;
+      positions[i * 3 + 2] += velocities[i].z;
+
+      // Bounce particles within bounds
+      if (Math.abs(positions[i * 3]) > 50) velocities[i].x *= -1;
+      if (Math.abs(positions[i * 3 + 1]) > 50) velocities[i].y *= -1;
+      if (Math.abs(positions[i * 3 + 2]) > 25) velocities[i].z *= -1;
+    }
+
+    particleSystem.geometry.attributes.position.needsUpdate = true;
+    particleSystem.rotation.y += 0.0002;
+  }
+
+  // Animate geometric shapes
+  geometricShapes.forEach(shape => {
+    shape.rotation.x += shape.userData.rotationSpeed.x;
+    shape.rotation.y += shape.userData.rotationSpeed.y;
+    shape.rotation.z += shape.userData.rotationSpeed.z;
+
+    // Gentle floating motion
+    shape.position.y += Math.sin(Date.now() * 0.001 + shape.position.x) * 0.01;
+  });
+
+  // Gentle camera movement based on scroll
+  const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+  camera.position.y = scrollPercent * 10;
+
+  renderer.render(scene, camera);
+}
+
+function onWindowResize() {
+  if (!camera || !renderer) return;
+
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+// Update Three.js colors when theme changes
+function updateThreeJSTheme() {
+  if (!particleSystem) return;
+
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const particleColor = isDark ? 0x818cf8 : 0x6366f1;
+
+  particleSystem.material.color.setHex(particleColor);
+}
+
+// ============================================
 // INIT
 // ============================================
 function init() {
   initTheme();
   initNavActiveState();
   fetchData();
+
+  // Initialize Three.js after a short delay to ensure DOM is ready
+  setTimeout(() => {
+    initThreeJS();
+  }, 100);
 }
 
 // Run on DOM ready
