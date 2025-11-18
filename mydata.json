@@ -1,118 +1,104 @@
 {
-  "brand": "Your Name",
-  "tagline": "IT Student | Full-Stack Developer | Problem Solver",
+  "brand": "HEIN",
+  "tagline": "Liberal Arts Student | Self-Taught Developer | Future IT Project Manager",
   "about": {
-    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=ITStudent",
-    "bio": "Passionate IT student specializing in full-stack development and cloud technologies. Currently pursuing a degree in Computer Science with a focus on building scalable web applications and solving complex technical challenges. Eager to contribute to innovative projects and grow as a software engineer."
+    "avatar": "assets/avatar.jpg",
+    "bio": "I'm a third-year liberal arts student at Kaichi International University in Japan with a passion for technology and a clear vision for my future in IT project management. Living independently in Japan, I've taught myself modern web development, focusing on Next.js, React, and database management. My unique combination of customer service experience, technical skills, and multilingual capabilities allows me to create technology solutions that truly serve diverse user needs. I'm preparing for the ITPEC FE certification exam in April 2026 as a pathway to transition from developer roles into project management positions."
   },
   "skills": [
     {
-      "group": "Programming Languages",
-      "items": ["JavaScript", "Python", "Java", "C++", "TypeScript", "SQL"]
+      "group": "Frontend Development",
+      "items": ["Next.js", "React", "PWA Development", "Responsive Design"]
     },
     {
-      "group": "Web Development",
-      "items": ["React", "Node.js", "HTML/CSS", "Express.js", "RESTful APIs", "MongoDB"]
+      "group": "Backend & Database",
+      "items": ["SQLite", "Prisma", "Database Management", "API Development"]
     },
     {
-      "group": "Tools & Technologies",
-      "items": ["Git/GitHub", "Docker", "VS Code", "Linux", "Postman", "Firebase"]
+      "group": "Tools & Automation",
+      "items": ["GitHub Actions", "Git", "CI/CD Workflows", "Development Automation"]
     },
     {
-      "group": "Core Competencies",
-      "items": ["Data Structures", "Algorithms", "OOP", "Database Design", "Problem Solving", "Agile/Scrum"]
+      "group": "AI & Emerging Tech",
+      "items": ["RVC (Voice Conversion)", "AI Development Tools", "Machine Learning Exploration"]
+    },
+    {
+      "group": "Languages",
+      "items": ["Japanese", "English", "Chinese", "Thai", "Korean"]
+    },
+    {
+      "group": "Professional Skills",
+      "items": ["IT Project Management", "Customer Service", "Cross-Cultural Communication", "Time Management", "Strategic Planning"]
+    },
+    {
+      "group": "Certifications (In Progress)",
+      "items": ["ITPEC FE (April 2026)", "Information Security", "Data Structures & Algorithms", "IT Strategy & Management"]
     }
   ],
   "projects": [
     {
-      "title": "E-Commerce Platform",
-      "image": "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&h=600&fit=crop",
-      "short": "Full-stack e-commerce web application with user authentication, shopping cart, and payment integration.",
-      "longText": "Developed a complete e-commerce platform from scratch using the MERN stack.\n\n• Implemented secure user authentication with JWT tokens\n• Built responsive UI with React and Material-UI\n• Created RESTful API with Node.js and Express\n• Integrated Stripe payment gateway\n• Deployed on Heroku with MongoDB Atlas\n• Achieved 95+ Lighthouse performance score",
-      "tags": ["React", "Node.js", "MongoDB", "Express", "Stripe"],
+      "title": "MyApp - Multilingual PWA",
+      "image": "assets/project1.jpg",
+      "short": "A Progressive Web App for health and beauty product information, supporting 5 languages to serve international customers.",
+      "longText": "MyApp is a multilingual Progressive Web App (PWA) designed to address real needs I observed while working with international customers at my drugstore.\n\n• Supports Japanese, English, Chinese, Thai, and Korean\n• Health and beauty product information database\n• PWA features for offline access and mobile installation\n• Built to solve real-world communication challenges\n• User-friendly interface for diverse international clientele\n\nThis project combines my customer service experience with technical skills to create practical solutions that bridge language barriers in retail environments.",
+      "tags": ["PWA", "Next.js", "Multilingual", "React"],
       "links": {
-        "demo": "https://your-demo.com",
-        "repo": "https://github.com/yourusername/ecommerce-platform"
+        "demo": "#",
+        "repo": "#"
       }
     },
     {
-      "title": "Task Manager App",
-      "image": "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=600&fit=crop",
-      "short": "Productivity application with real-time collaboration, drag-and-drop interface, and notifications.",
-      "longText": "A modern task management application with collaborative features.\n\n• Real-time updates using Socket.io\n• Drag-and-drop interface with React Beautiful DnD\n• Push notifications for task deadlines\n• Dark mode support\n• Responsive design for mobile and desktop\n• Used by 50+ students in my university",
-      "tags": ["React", "Socket.io", "Firebase", "Material-UI"],
+      "title": "Product Data Generator (PDG)",
+      "image": "assets/project2.jpg",
+      "short": "A comprehensive system for managing and generating product data with modern development workflows and automation.",
+      "longText": "Product Data Generator is a full-stack application demonstrating modern development practices and automation.\n\n• Built with Next.js for server-side rendering and optimal performance\n• SQLite database with Prisma ORM for type-safe database access\n• GitHub Actions integration for continuous deployment\n• Automated workflows for data processing and validation\n• Scalable architecture supporting future enhancements\n\nThis project showcases my ability to work with modern development tools and implement automated workflows that improve efficiency.",
+      "tags": ["Next.js", "SQLite", "Prisma", "GitHub Actions"],
       "links": {
-        "demo": "https://your-task-manager.com",
-        "repo": "https://github.com/yourusername/task-manager"
+        "demo": "#",
+        "repo": "#"
       }
     },
     {
-      "title": "AI Chatbot",
-      "image": "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=800&h=600&fit=crop",
-      "short": "Intelligent chatbot using NLP for customer support automation and FAQ handling.",
-      "longText": "Built an AI-powered chatbot for automated customer service.\n\n• Natural language processing with Python\n• TensorFlow for intent classification\n• Flask backend API\n• React frontend with chat interface\n• Trained on 1000+ conversation samples\n• 85% accuracy in intent recognition",
-      "tags": ["Python", "TensorFlow", "Flask", "NLP", "React"],
+      "title": "AI Voice Conversion Projects",
+      "image": "assets/project3.jpg",
+      "short": "Exploring AI technologies through voice conversion using RVC (Retrieval-based Voice Conversion) and other AI tools.",
+      "longText": "Working with cutting-edge AI technologies to explore voice conversion and machine learning applications.\n\n• Implemented RVC (Retrieval-based Voice Conversion) technology\n• Experimenting with various AI development tools\n• Staying current with emerging AI technologies\n• Building practical understanding of ML workflows\n• Exploring applications of AI in real-world scenarios\n\nThis ongoing exploration keeps me at the forefront of AI development and prepares me for future tech trends.",
+      "tags": ["AI", "RVC", "Machine Learning", "Voice Tech"],
       "links": {
-        "demo": "https://your-chatbot.com",
-        "repo": "https://github.com/yourusername/ai-chatbot"
+        "demo": "#",
+        "repo": "#"
       }
     }
   ],
   "experience": [
     {
-      "company": "Tech Company / Internship",
-      "role": "Software Development Intern",
-      "start": "2024-06",
+      "company": "Kaichi International University",
+      "role": "Liberal Arts Student (Third Year)",
+      "start": "2023-04",
       "end": "Present",
       "highlights": [
-        "Developed and maintained features for web applications using React and Node.js",
-        "Collaborated with senior developers on code reviews and best practices",
-        "Reduced API response time by 30% through database query optimization",
-        "Participated in daily standups and sprint planning meetings"
+        "Pursuing liberal arts degree while building technical skills independently",
+        "Self-directed learning in web development and IT project management",
+        "Preparing for ITPEC FE certification exam (April 2026)",
+        "Studying information security, data structures, algorithms, and IT strategy",
+        "Managing independent living including rent, tuition, and taxes"
       ]
     },
     {
-      "company": "University Computer Science Club",
-      "role": "Web Development Lead",
-      "start": "2023-09",
-      "end": "2024-05",
-      "highlights": [
-        "Led a team of 5 students in developing the club's official website",
-        "Organized weekly coding workshops for 30+ students",
-        "Mentored junior students in web development fundamentals",
-        "Managed project timelines and deliverables using Agile methodology"
-      ]
-    },
-    {
-      "company": "Freelance Projects",
-      "role": "Full-Stack Developer",
-      "start": "2023-01",
+      "company": "Local Drugstore (Japan)",
+      "role": "Part-Time Customer Service Associate",
+      "start": "2023-04",
       "end": "Present",
       "highlights": [
-        "Built custom websites for 3 local small businesses",
-        "Delivered projects on time and within budget",
-        "Provided ongoing maintenance and technical support",
-        "Increased client website traffic by average of 40%"
+        "Serving diverse international clientele daily",
+        "Providing multilingual support in Japanese, English, Chinese, Thai, and Korean",
+        "Identified real-world needs that inspired MyApp development",
+        "Developed cross-cultural communication and problem-solving skills",
+        "Balancing work responsibilities with academic and technical studies"
       ]
     }
   ],
-  "testimonials": [
-    {
-      "name": "Dr. Sarah Johnson",
-      "title": "Computer Science Professor",
-      "quote": "An exceptional student who consistently goes above and beyond. Their project work demonstrates strong technical skills and creative problem-solving abilities."
-    },
-    {
-      "name": "Michael Chen",
-      "title": "Senior Developer @ Tech Corp",
-      "quote": "During their internship, they quickly adapted to our tech stack and made meaningful contributions. A fast learner with great potential."
-    },
-    {
-      "name": "Emily Rodriguez",
-      "title": "Small Business Owner",
-      "quote": "Professional, communicative, and delivered exactly what we needed. The website has helped our business tremendously. Highly recommend!"
-    }
-  ],
+  "testimonials": [],
   "contact": {
     "email": "your.email@example.com",
     "socials": [
@@ -126,13 +112,13 @@
       },
       {
         "name": "X",
-        "url": "https://x.com/yourusername"
+        "url": "https://x.com/yourhandle"
       }
     ]
   },
   "seo": {
-    "title": "Your Name — IT Student & Developer",
-    "description": "IT student specializing in full-stack development. Building modern web applications with React, Node.js, and cloud technologies.",
-    "ogImage": "https://via.placeholder.com/1200x630/6366f1/ffffff?text=Your+Portfolio"
+    "title": "HEIN — Student Developer & Future IT Project Manager",
+    "description": "Third-year liberal arts student at Kaichi International University with self-taught web development skills. Building solutions with Next.js, React, and modern technologies while preparing for IT project management career in Japan.",
+    "ogImage": "assets/og.png"
   }
 }
