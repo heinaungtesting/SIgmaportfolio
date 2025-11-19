@@ -110,6 +110,34 @@ function renderHero() {
 }
 
 // ============================================
+// IMAGE HANDLING
+// ============================================
+function handleImageLoad(img) {
+  img.classList.add('loaded');
+  img.classList.remove('error');
+}
+
+function handleImageError(img) {
+  img.classList.add('error');
+  img.classList.remove('loaded');
+  // Set a fallback gradient background
+  img.style.background = 'var(--gradient-primary)';
+}
+
+function setupImageHandlers(img) {
+  if (img.complete) {
+    if (img.naturalWidth === 0) {
+      handleImageError(img);
+    } else {
+      handleImageLoad(img);
+    }
+  } else {
+    img.addEventListener('load', () => handleImageLoad(img));
+    img.addEventListener('error', () => handleImageError(img));
+  }
+}
+
+// ============================================
 // ABOUT SECTION
 // ============================================
 function renderAbout() {
@@ -125,6 +153,7 @@ function renderAbout() {
     avatarEl.src = avatar;
     avatarEl.alt = `${portfolioData.brand} avatar`;
     avatarEl.style.display = 'block';
+    setupImageHandlers(avatarEl);
   }
 
   document.getElementById('about-bio').textContent = bio || '';
@@ -192,6 +221,11 @@ function renderProjects() {
       }
     });
   });
+
+  // Setup image handlers for all project images
+  document.querySelectorAll('.project-image').forEach(img => {
+    setupImageHandlers(img);
+  });
 }
 
 // ============================================
@@ -202,8 +236,14 @@ function openProjectModal(index) {
   if (!project.longText) return; // Only open modal if there's detailed content
 
   const modal = document.getElementById('project-modal');
-  document.getElementById('modal-image').src = project.image;
-  document.getElementById('modal-image').alt = project.title;
+  const modalImage = document.getElementById('modal-image');
+
+  // Reset image classes and set new source
+  modalImage.classList.remove('loaded', 'error');
+  modalImage.src = project.image;
+  modalImage.alt = project.title;
+  setupImageHandlers(modalImage);
+
   document.getElementById('modal-title').textContent = project.title;
   document.getElementById('modal-tags').innerHTML = project.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
   document.getElementById('modal-body').textContent = project.longText;

@@ -1077,3 +1077,84 @@ main {
     background-position: 1000px 0;
   }
 }
+
+/* ============================================
+   IMAGE OPTIMIZATION
+   ============================================ */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Image loading skeleton */
+.project-image,
+.modal-image,
+.about-avatar {
+  background: linear-gradient(
+    90deg,
+    var(--bg-secondary) 0%,
+    var(--bg-elevated) 50%,
+    var(--bg-secondary) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.project-image.loaded,
+.modal-image.loaded,
+.about-avatar.loaded {
+  animation: none;
+  background: var(--bg-secondary);
+}
+
+/* Image error state */
+.project-image.error,
+.modal-image.error,
+.about-avatar.error {
+  animation: none;
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.project-image.error::after,
+.modal-image.error::after {
+  content: 'Image';
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  opacity: 0.7;
+}
+
+.about-avatar.error::after {
+  content: '';
+}
+
+/* Image fade-in on load */
+.project-image,
+.modal-image,
+.about-avatar {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-image.loaded,
+.modal-image.loaded,
+.about-avatar.loaded,
+.project-image.error,
+.modal-image.error,
+.about-avatar.error {
+  opacity: 1;
+}
+
+/* Project image container for overflow */
+.project-card {
+  overflow: hidden;
+}
+
+.project-card .project-image {
+  overflow: hidden;
+}
