@@ -1,137 +1,125 @@
 {
-  "brand": "Alex Morgan",
-  "tagline": "Building fast, delightful products that users love.",
+  "brand": "HEIN",
+  "tagline": "Liberal Arts Student | Self-Taught Developer | Future IT Project Manager",
   "about": {
-    "avatar": "assets/avatar.jpg",
-    "bio": "Frontend engineer with 5+ years crafting performant, accessible web experiences. I specialize in React, TypeScript, and modern web platforms. Passionate about design systems, developer experience, and shipping quality code."
+    "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
+    "bio": "I'm a third-year liberal arts student at Kaichi International University in Japan with a passion for technology and a clear vision for my future in IT project management. Living independently in Japan, I've taught myself modern web development, focusing on Next.js, React, and database management. My unique combination of customer service experience, technical skills, and multilingual capabilities allows me to create technology solutions that truly serve diverse user needs. I'm preparing for the ITPEC FE certification exam in April 2026 as a pathway to transition from developer roles into project management positions."
   },
   "skills": [
     {
-      "group": "Frontend",
-      "items": ["React", "Next.js", "TypeScript", "Tailwind CSS", "Vue.js", "CSS/SCSS"]
+      "group": "Frontend Development",
+      "items": ["Next.js", "React", "PWA Development", "Responsive Design"]
     },
     {
-      "group": "Backend",
-      "items": ["Node.js", "FastAPI", "PostgreSQL", "Redis", "GraphQL"]
+      "group": "Backend & Database",
+      "items": ["SQLite", "Prisma", "Database Management", "API Development"]
     },
     {
-      "group": "Tools & DevOps",
-      "items": ["Git", "Docker", "Vercel", "GitHub Actions", "Figma"]
+      "group": "Tools & Automation",
+      "items": ["GitHub Actions", "Git", "CI/CD Workflows", "Development Automation"]
     },
     {
-      "group": "Soft Skills",
-      "items": ["Product thinking", "Code review", "Mentorship", "Technical writing"]
+      "group": "AI & Emerging Tech",
+      "items": ["RVC (Voice Conversion)", "AI Development Tools", "Machine Learning Exploration"]
+    },
+    {
+      "group": "Languages",
+      "items": ["Japanese", "English", "Chinese", "Thai", "Korean"]
+    },
+    {
+      "group": "Professional Skills",
+      "items": ["IT Project Management", "Customer Service", "Cross-Cultural Communication", "Time Management", "Strategic Planning"]
+    },
+    {
+      "group": "Certifications (In Progress)",
+      "items": ["ITPEC FE (April 2026)", "Information Security", "Data Structures & Algorithms", "IT Strategy & Management"]
     }
   ],
   "projects": [
     {
-      "title": "TaskFlow Pro",
-      "image": "assets/project1.jpg",
-      "short": "AI-powered task management with smart prioritization and team collaboration.",
-      "longText": "TaskFlow Pro is a modern task management platform that uses machine learning to help teams prioritize work intelligently.\n\n• Built with Next.js 14, TypeScript, and Tailwind CSS\n• Real-time collaboration using WebSockets\n• AI prioritization engine reduced planning time by 40%\n• Scaled to 10K+ daily active users\n• 98+ Lighthouse performance score",
-      "tags": ["Next.js", "TypeScript", "AI", "WebSockets"],
+      "title": "MyApp - Multilingual PWA",
+      "image": "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&q=80",
+      "short": "A Progressive Web App for health and beauty product information, supporting 5 languages to serve international customers.",
+      "longText": "MyApp is a multilingual Progressive Web App (PWA) designed to address real needs I observed while working with international customers at my drugstore.\n\n• Supports Japanese, English, Chinese, Thai, and Korean\n• Health and beauty product information database\n• PWA features for offline access and mobile installation\n• Built to solve real-world communication challenges\n• User-friendly interface for diverse international clientele\n\nThis project combines my customer service experience with technical skills to create practical solutions that bridge language barriers in retail environments.",
+      "tags": ["PWA", "Next.js", "Multilingual", "React"],
       "links": {
-        "demo": "https://taskflow-demo.example.com",
-        "repo": "https://github.com/example/taskflow"
+        "demo": "#",
+        "repo": "#"
       }
     },
     {
-      "title": "Design System Kit",
-      "image": "assets/project2.jpg",
-      "short": "Open-source component library with 50+ accessible React components.",
-      "longText": "A production-ready design system used by 200+ companies.\n\n• 50+ fully accessible components (WCAG AA+)\n• Complete dark mode support\n• Comprehensive Storybook documentation\n• Tree-shakeable, <50KB gzipped\n• 15K+ weekly npm downloads",
-      "tags": ["React", "TypeScript", "A11y", "Storybook"],
+      "title": "Product Data Generator (PDG)",
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+      "short": "A comprehensive system for managing and generating product data with modern development workflows and automation.",
+      "longText": "Product Data Generator is a full-stack application demonstrating modern development practices and automation.\n\n• Built with Next.js for server-side rendering and optimal performance\n• SQLite database with Prisma ORM for type-safe database access\n• GitHub Actions integration for continuous deployment\n• Automated workflows for data processing and validation\n• Scalable architecture supporting future enhancements\n\nThis project showcases my ability to work with modern development tools and implement automated workflows that improve efficiency.",
+      "tags": ["Next.js", "SQLite", "Prisma", "GitHub Actions"],
       "links": {
-        "demo": "https://design-kit.example.com",
-        "repo": "https://github.com/example/design-kit"
+        "demo": "#",
+        "repo": "#"
       }
     },
     {
-      "title": "DevMetrics Dashboard",
-      "image": "assets/project3.jpg",
-      "short": "Real-time analytics platform for engineering teams to track velocity and code quality.",
-      "longText": "Analytics dashboard that aggregates data from GitHub, Jira, and CI/CD pipelines.\n\n• Real-time metrics visualization with D3.js\n• Integrates with 10+ developer tools\n• Custom report builder with drag-and-drop\n• Helped teams improve deploy frequency by 3x\n• Reduced incident response time by 50%",
-      "tags": ["React", "D3.js", "Node.js", "PostgreSQL"],
+      "title": "AI Voice Conversion Projects",
+      "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80",
+      "short": "Exploring AI technologies through voice conversion using RVC (Retrieval-based Voice Conversion) and other AI tools.",
+      "longText": "Working with cutting-edge AI technologies to explore voice conversion and machine learning applications.\n\n• Implemented RVC (Retrieval-based Voice Conversion) technology\n• Experimenting with various AI development tools\n• Staying current with emerging AI technologies\n• Building practical understanding of ML workflows\n• Exploring applications of AI in real-world scenarios\n\nThis ongoing exploration keeps me at the forefront of AI development and prepares me for future tech trends.",
+      "tags": ["AI", "RVC", "Machine Learning", "Voice Tech"],
       "links": {
-        "demo": "https://devmetrics.example.com",
-        "repo": "https://github.com/example/devmetrics"
+        "demo": "#",
+        "repo": "#"
       }
     }
   ],
   "experience": [
     {
-      "company": "TechCorp",
-      "role": "Senior Frontend Engineer",
-      "start": "2022-01",
+      "company": "Kaichi International University",
+      "role": "Liberal Arts Student (Third Year)",
+      "start": "2023-04",
       "end": "Present",
       "highlights": [
-        "Led redesign of core product, improving conversion by 35%",
-        "Built design system adopted across 8 product teams",
-        "Mentored 4 junior engineers, 2 promoted to mid-level",
-        "Reduced bundle size by 60% through code splitting and optimization"
+        "Pursuing liberal arts degree while building technical skills independently",
+        "Self-directed learning in web development and IT project management",
+        "Preparing for ITPEC FE certification exam (April 2026)",
+        "Studying information security, data structures, algorithms, and IT strategy",
+        "Managing independent living including rent, tuition, and taxes"
       ]
     },
     {
-      "company": "StartupXYZ",
-      "role": "Frontend Engineer",
-      "start": "2020-03",
-      "end": "2021-12",
+      "company": "Local Drugstore (Japan)",
+      "role": "Part-Time Customer Service Associate",
+      "start": "2023-04",
+      "end": "Present",
       "highlights": [
-        "First frontend hire, built entire UI architecture",
-        "Shipped v1 product in 3 months with React and TypeScript",
-        "Implemented CI/CD pipeline reducing deploy time from 45min to 5min",
-        "Grew engineering team from 1 to 6 through recruiting and interviewing"
-      ]
-    },
-    {
-      "company": "Digital Agency Co",
-      "role": "Frontend Developer",
-      "start": "2018-06",
-      "end": "2020-02",
-      "highlights": [
-        "Delivered 15+ client projects using React, Vue, and WordPress",
-        "Improved average Lighthouse score from 65 to 95+",
-        "Introduced accessibility audits, ensuring WCAG AA compliance"
+        "Serving diverse international clientele daily",
+        "Providing multilingual support in Japanese, English, Chinese, Thai, and Korean",
+        "Identified real-world needs that inspired MyApp development",
+        "Developed cross-cultural communication and problem-solving skills",
+        "Balancing work responsibilities with academic and technical studies"
       ]
     }
   ],
-  "testimonials": [
-    {
-      "name": "Sarah Chen",
-      "title": "Product Manager @ TechCorp",
-      "quote": "Alex transformed our product with thoughtful UX and blazing-fast performance. A true full-stack product engineer."
-    },
-    {
-      "name": "James Wilson",
-      "title": "CTO @ StartupXYZ",
-      "quote": "Best hire we made. Alex shipped our entire frontend in record time and built a foundation that scaled to millions of users."
-    },
-    {
-      "name": "Maya Patel",
-      "title": "Designer @ Digital Agency Co",
-      "quote": "Working with Alex elevated our team's standards. Every pixel-perfect, accessible, and performant. A designer's dream collaborator."
-    }
-  ],
+  "testimonials": [],
   "contact": {
-    "email": "alex@example.com",
+    "email": "your.email@example.com",
+    "resumeUrl": "assets/resume.pdf",
     "socials": [
       {
         "name": "GitHub",
-        "url": "https://github.com/alexmorgan"
+        "url": "https://github.com/yourusername"
       },
       {
         "name": "LinkedIn",
-        "url": "https://www.linkedin.com/in/alexmorgan/"
+        "url": "https://www.linkedin.com/in/yourprofile/"
       },
       {
         "name": "X",
-        "url": "https://x.com/alexmorgan"
+        "url": "https://x.com/yourhandle"
       }
     ]
   },
   "seo": {
-    "title": "Alex Morgan — Frontend Engineer",
-    "description": "Frontend engineer building fast, delightful products. Specialized in React, TypeScript, and modern web platforms.",
-    "ogImage": "assets/og.png"
+    "title": "HEIN — Student Developer & Future IT Project Manager",
+    "description": "Third-year liberal arts student at Kaichi International University with self-taught web development skills. Building solutions with Next.js, React, and modern technologies while preparing for IT project management career in Japan.",
+    "ogImage": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&h=630&fit=crop"
   }
 }

@@ -2,6 +2,9 @@
 // GLOBALS
 // ============================================
 let portfolioData = null;
+let scene, camera, renderer, particles, particleSystem;
+let geometricShapes = [];
+let animationId;
 
 // ============================================
 // THEME MANAGEMENT
@@ -17,6 +20,9 @@ function initTheme() {
     const next = current === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
     localStorage.setItem('theme', next);
+
+    // Update Three.js theme colors
+    updateThreeJSTheme();
   });
 }
 
@@ -96,11 +102,65 @@ function renderSEO() {
 // HERO SECTION
 // ============================================
 function renderHero() {
-  const { brand, tagline } = portfolioData;
+  const { brand, tagline, contact } = portfolioData;
+
+  const heroTitle = document.getElementById('hero-title');
+  const heroTagline = document.getElementById('hero-tagline');
+
+  // Remove skeleton classes
+  heroTitle.classList.remove('skeleton');
+  heroTagline.classList.remove('skeleton');
 
   document.getElementById('brand').textContent = brand || 'Portfolio';
-  document.getElementById('hero-title').textContent = brand || 'Your Name';
-  document.getElementById('hero-tagline').textContent = tagline || '';
+  heroTitle.textContent = brand || 'Your Name';
+  heroTagline.textContent = tagline || '';
+
+  // Add resume button if resumeUrl exists
+  if (contact && contact.resumeUrl) {
+    const heroCta = document.getElementById('hero-cta');
+    const resumeBtn = document.createElement('a');
+    resumeBtn.href = contact.resumeUrl;
+    resumeBtn.target = '_blank';
+    resumeBtn.rel = 'noopener';
+    resumeBtn.className = 'btn btn-secondary btn-lg';
+    resumeBtn.innerHTML = `
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px; vertical-align: middle;">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+        <polyline points="7 10 12 15 17 10"></polyline>
+        <line x1="12" y1="15" x2="12" y2="3"></line>
+      </svg>
+      Download Resume
+    `;
+    heroCta.appendChild(resumeBtn);
+  }
+}
+
+// ============================================
+// IMAGE HANDLING
+// ============================================
+function handleImageLoad(img) {
+  img.classList.add('loaded');
+  img.classList.remove('error');
+}
+
+function handleImageError(img) {
+  img.classList.add('error');
+  img.classList.remove('loaded');
+  // Set a fallback gradient background
+  img.style.background = 'var(--gradient-primary)';
+}
+
+function setupImageHandlers(img) {
+  if (img.complete) {
+    if (img.naturalWidth === 0) {
+      handleImageError(img);
+    } else {
+      handleImageLoad(img);
+    }
+  } else {
+    img.addEventListener('load', () => handleImageLoad(img));
+    img.addEventListener('error', () => handleImageError(img));
+  }
 }
 
 // ============================================
@@ -119,6 +179,7 @@ function renderAbout() {
     avatarEl.src = avatar;
     avatarEl.alt = `${portfolioData.brand} avatar`;
     avatarEl.style.display = 'block';
+    setupImageHandlers(avatarEl);
   }
 
   document.getElementById('about-bio').textContent = bio || '';
@@ -127,6 +188,91 @@ function renderAbout() {
 // ============================================
 // SKILLS SECTION
 // ============================================
+
+// Devicon mapping for common technologies
+const deviconMap = {
+  // Frontend
+  'react': 'devicon-react-original',
+  'next.js': 'devicon-nextjs-plain',
+  'nextjs': 'devicon-nextjs-plain',
+  'vue': 'devicon-vuejs-plain',
+  'vue.js': 'devicon-vuejs-plain',
+  'angular': 'devicon-angularjs-plain',
+  'javascript': 'devicon-javascript-plain',
+  'typescript': 'devicon-typescript-plain',
+  'html': 'devicon-html5-plain',
+  'html5': 'devicon-html5-plain',
+  'css': 'devicon-css3-plain',
+  'css3': 'devicon-css3-plain',
+  'sass': 'devicon-sass-original',
+  'scss': 'devicon-sass-original',
+  'tailwind': 'devicon-tailwindcss-plain',
+  'tailwind css': 'devicon-tailwindcss-plain',
+  'bootstrap': 'devicon-bootstrap-plain',
+
+  // Backend
+  'node.js': 'devicon-nodejs-plain',
+  'nodejs': 'devicon-nodejs-plain',
+  'express': 'devicon-express-original',
+  'express.js': 'devicon-express-original',
+  'python': 'devicon-python-plain',
+  'django': 'devicon-django-plain',
+  'flask': 'devicon-flask-original',
+  'java': 'devicon-java-plain',
+  'spring': 'devicon-spring-plain',
+  'php': 'devicon-php-plain',
+  'laravel': 'devicon-laravel-plain',
+  'ruby': 'devicon-ruby-plain',
+  'rails': 'devicon-rails-plain',
+  'go': 'devicon-go-plain',
+  'rust': 'devicon-rust-plain',
+  'c': 'devicon-c-plain',
+  'c++': 'devicon-cplusplus-plain',
+  'c#': 'devicon-csharp-plain',
+
+  // Database
+  'mongodb': 'devicon-mongodb-plain',
+  'mysql': 'devicon-mysql-plain',
+  'postgresql': 'devicon-postgresql-plain',
+  'redis': 'devicon-redis-plain',
+  'sqlite': 'devicon-sqlite-plain',
+  'firebase': 'devicon-firebase-plain',
+  'prisma': 'devicon-prisma-original',
+
+  // DevOps & Tools
+  'docker': 'devicon-docker-plain',
+  'kubernetes': 'devicon-kubernetes-plain',
+  'git': 'devicon-git-plain',
+  'github': 'devicon-github-original',
+  'github actions': 'devicon-github-original',
+  'gitlab': 'devicon-gitlab-plain',
+  'aws': 'devicon-amazonwebservices-original',
+  'azure': 'devicon-azure-plain',
+  'linux': 'devicon-linux-plain',
+  'nginx': 'devicon-nginx-original',
+  'webpack': 'devicon-webpack-plain',
+  'vscode': 'devicon-vscode-plain',
+  'vs code': 'devicon-vscode-plain',
+  'figma': 'devicon-figma-plain',
+
+  // Mobile
+  'react native': 'devicon-react-original',
+  'flutter': 'devicon-flutter-plain',
+  'swift': 'devicon-swift-plain',
+  'kotlin': 'devicon-kotlin-plain',
+
+  // AI/ML
+  'tensorflow': 'devicon-tensorflow-original',
+  'pytorch': 'devicon-pytorch-original',
+  'pandas': 'devicon-pandas-original',
+  'numpy': 'devicon-numpy-original',
+};
+
+function getDeviconClass(skillName) {
+  const normalizedName = skillName.toLowerCase().trim();
+  return deviconMap[normalizedName] || null;
+}
+
 function renderSkills() {
   if (!portfolioData.skills || portfolioData.skills.length === 0) {
     document.getElementById('skills').style.display = 'none';
@@ -138,7 +284,11 @@ function renderSkills() {
     <div class="skill-group">
       <h3>${skillGroup.group}</h3>
       <div class="skill-items">
-        ${skillGroup.items.map(item => `<span class="skill-tag">${item}</span>`).join('')}
+        ${skillGroup.items.map(item => {
+          const iconClass = getDeviconClass(item);
+          const iconHtml = iconClass ? `<i class="${iconClass}"></i>` : '';
+          return `<span class="skill-tag">${iconHtml}${item}</span>`;
+        }).join('')}
       </div>
     </div>
   `).join('');
@@ -186,6 +336,11 @@ function renderProjects() {
       }
     });
   });
+
+  // Setup image handlers for all project images
+  document.querySelectorAll('.project-image').forEach(img => {
+    setupImageHandlers(img);
+  });
 }
 
 // ============================================
@@ -196,8 +351,14 @@ function openProjectModal(index) {
   if (!project.longText) return; // Only open modal if there's detailed content
 
   const modal = document.getElementById('project-modal');
-  document.getElementById('modal-image').src = project.image;
-  document.getElementById('modal-image').alt = project.title;
+  const modalImage = document.getElementById('modal-image');
+
+  // Reset image classes and set new source
+  modalImage.classList.remove('loaded', 'error');
+  modalImage.src = project.image;
+  modalImage.alt = project.title;
+  setupImageHandlers(modalImage);
+
   document.getElementById('modal-title').textContent = project.title;
   document.getElementById('modal-tags').innerHTML = project.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
   document.getElementById('modal-body').textContent = project.longText;
@@ -350,12 +511,221 @@ function renderFooter() {
 }
 
 // ============================================
+// THREE.JS ANIMATIONS
+// ============================================
+function initThreeJS() {
+  const canvas = document.getElementById('bg-canvas');
+  if (!canvas || !window.THREE) return;
+
+  // Scene setup
+  scene = new THREE.Scene();
+  camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.z = 30;
+
+  renderer = new THREE.WebGLRenderer({
+    canvas: canvas,
+    alpha: true,
+    antialias: true
+  });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  // Create particle network
+  createParticleNetwork();
+
+  // Create floating geometric shapes
+  createGeometricShapes();
+
+  // Handle window resize
+  window.addEventListener('resize', onWindowResize);
+
+  // Start animation
+  animate();
+}
+
+function createParticleNetwork() {
+  const particleCount = 100;
+  const positions = new Float32Array(particleCount * 3);
+  const velocities = [];
+
+  for (let i = 0; i < particleCount; i++) {
+    positions[i * 3] = (Math.random() - 0.5) * 100;
+    positions[i * 3 + 1] = (Math.random() - 0.5) * 100;
+    positions[i * 3 + 2] = (Math.random() - 0.5) * 50;
+
+    velocities.push({
+      x: (Math.random() - 0.5) * 0.02,
+      y: (Math.random() - 0.5) * 0.02,
+      z: (Math.random() - 0.5) * 0.02
+    });
+  }
+
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+  // Get theme color
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark' ||
+    (window.matchMedia('(prefers-color-scheme: dark)').matches &&
+     !document.documentElement.getAttribute('data-theme'));
+
+  const particleColor = isDark ? 0x818cf8 : 0x6366f1;
+
+  const material = new THREE.PointsMaterial({
+    color: particleColor,
+    size: 2,
+    transparent: true,
+    opacity: 0.6,
+    blending: THREE.AdditiveBlending
+  });
+
+  particleSystem = new THREE.Points(geometry, material);
+  particleSystem.userData.velocities = velocities;
+  scene.add(particleSystem);
+}
+
+function createGeometricShapes() {
+  const shapes = [
+    { geometry: new THREE.TorusGeometry(3, 1, 16, 100), color: 0x667eea },
+    { geometry: new THREE.OctahedronGeometry(2), color: 0x764ba2 },
+    { geometry: new THREE.TetrahedronGeometry(2.5), color: 0x8b5cf6 },
+  ];
+
+  shapes.forEach((shapeData, index) => {
+    const material = new THREE.MeshBasicMaterial({
+      color: shapeData.color,
+      wireframe: true,
+      transparent: true,
+      opacity: 0.15
+    });
+
+    const mesh = new THREE.Mesh(shapeData.geometry, material);
+
+    // Position shapes
+    mesh.position.x = (index - 1) * 20;
+    mesh.position.y = Math.sin(index) * 10;
+    mesh.position.z = -20;
+
+    // Random rotation speeds
+    mesh.userData.rotationSpeed = {
+      x: Math.random() * 0.01,
+      y: Math.random() * 0.01,
+      z: Math.random() * 0.01
+    };
+
+    geometricShapes.push(mesh);
+    scene.add(mesh);
+  });
+}
+
+function animate() {
+  animationId = requestAnimationFrame(animate);
+
+  // Animate particles
+  if (particleSystem) {
+    const positions = particleSystem.geometry.attributes.position.array;
+    const velocities = particleSystem.userData.velocities;
+
+    for (let i = 0; i < positions.length / 3; i++) {
+      positions[i * 3] += velocities[i].x;
+      positions[i * 3 + 1] += velocities[i].y;
+      positions[i * 3 + 2] += velocities[i].z;
+
+      // Bounce particles within bounds
+      if (Math.abs(positions[i * 3]) > 50) velocities[i].x *= -1;
+      if (Math.abs(positions[i * 3 + 1]) > 50) velocities[i].y *= -1;
+      if (Math.abs(positions[i * 3 + 2]) > 25) velocities[i].z *= -1;
+    }
+
+    particleSystem.geometry.attributes.position.needsUpdate = true;
+    particleSystem.rotation.y += 0.0002;
+  }
+
+  // Animate geometric shapes
+  geometricShapes.forEach(shape => {
+    shape.rotation.x += shape.userData.rotationSpeed.x;
+    shape.rotation.y += shape.userData.rotationSpeed.y;
+    shape.rotation.z += shape.userData.rotationSpeed.z;
+
+    // Gentle floating motion
+    shape.position.y += Math.sin(Date.now() * 0.001 + shape.position.x) * 0.01;
+  });
+
+  // Gentle camera movement based on scroll
+  const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+  camera.position.y = scrollPercent * 10;
+
+  renderer.render(scene, camera);
+}
+
+function onWindowResize() {
+  if (!camera || !renderer) return;
+
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+// Update Three.js colors when theme changes
+function updateThreeJSTheme() {
+  if (!particleSystem) return;
+
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const particleColor = isDark ? 0x818cf8 : 0x6366f1;
+
+  particleSystem.material.color.setHex(particleColor);
+}
+
+// ============================================
 // INIT
+// ============================================
+// MOBILE NAVIGATION
+// ============================================
+function initMobileNav() {
+  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  const nav = document.getElementById('nav');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  if (!mobileMenuToggle || !nav) return;
+
+  // Toggle menu when hamburger button is clicked
+  mobileMenuToggle.addEventListener('click', () => {
+    mobileMenuToggle.classList.toggle('open');
+    nav.classList.toggle('open');
+    document.body.classList.toggle('menu-open');
+  });
+
+  // Close menu when a nav link is clicked
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenuToggle.classList.remove('open');
+      nav.classList.remove('open');
+      document.body.classList.remove('menu-open');
+    });
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (nav.classList.contains('open') &&
+        !nav.contains(e.target) &&
+        !mobileMenuToggle.contains(e.target)) {
+      mobileMenuToggle.classList.remove('open');
+      nav.classList.remove('open');
+      document.body.classList.remove('menu-open');
+    }
+  });
+}
+
 // ============================================
 function init() {
   initTheme();
   initNavActiveState();
+  initMobileNav();
   fetchData();
+
+  // Initialize Three.js after a short delay to ensure DOM is ready
+  setTimeout(() => {
+    initThreeJS();
+  }, 100);
 }
 
 // Run on DOM ready

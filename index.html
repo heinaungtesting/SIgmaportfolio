@@ -3,16 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta property="og:title" content="">
-  <meta property="og:description" content="">
-  <meta property="og:image" content="">
+  <meta name="description" content="Third-year liberal arts student at Kaichi International University with self-taught web development skills. Building solutions with Next.js, React, and modern technologies while preparing for IT project management career in Japan.">
+  <meta property="og:title" content="HEIN — Student Developer & Future IT Project Manager">
+  <meta property="og:description" content="Third-year liberal arts student at Kaichi International University with self-taught web development skills. Building solutions with Next.js, React, and modern technologies while preparing for IT project management career in Japan.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&h=630&fit=crop">
   <meta property="og:type" content="website">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>💼</text></svg>">
-  <title>Portfolio</title>
+  <title>HEIN — Student Developer & Future IT Project Manager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
   <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
+  <!-- Three.js Canvas Background -->
+  <canvas id="bg-canvas"></canvas>
   <!-- Header -->
   <header class="header" id="header">
     <div class="container header-content">
@@ -24,7 +31,8 @@
         <a href="#experience" class="nav-link">Experience</a>
         <a href="#contact" class="nav-link">Contact</a>
       </nav>
-      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+      <div class="header-actions">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
         <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="5"></circle>
           <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -40,6 +48,12 @@
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
         </svg>
       </button>
+      <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+      </div>
     </div>
   </header>
 
@@ -47,8 +61,19 @@
     <!-- Hero Section -->
     <section class="hero" id="hero">
       <div class="container hero-content">
-        <h1 class="hero-title" id="hero-title">Loading...</h1>
-        <p class="hero-tagline" id="hero-tagline"></p>
+        <div class="hero-badge">IT Student & Developer</div>
+        <h1 class="hero-title skeleton" id="hero-title"></h1>
+        <p class="hero-tagline skeleton" id="hero-tagline"></p>
+        <div class="hero-cta" id="hero-cta">
+          <a href="#projects" class="btn btn-primary btn-lg">View My Work</a>
+          <a href="#contact" class="btn btn-secondary btn-lg">Get In Touch</a>
+        </div>
+        <div class="scroll-indicator">
+          <span>Scroll to explore</span>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </div>
       </div>
     </section>
 
