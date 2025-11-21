@@ -2,7 +2,7 @@
   "brand": "HEIN",
   "tagline": "Liberal Arts Student | Self-Taught Developer | Future IT Project Manager",
   "about": {
-    "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
+    "avatar": "avatar.jpg",
     "bio": "I'm a third-year liberal arts student at Kaichi International University in Japan with a passion for technology and a clear vision for my future in IT project management. Living independently in Japan, I've taught myself modern web development, focusing on Next.js, React, and database management. My unique combination of customer service experience, technical skills, and multilingual capabilities allows me to create technology solutions that truly serve diverse user needs. I'm preparing for the ITPEC FE certification exam in April 2026 as a pathway to transition from developer roles into project management positions."
   },
   "skills": [
