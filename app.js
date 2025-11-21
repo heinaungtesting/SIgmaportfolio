@@ -678,9 +678,48 @@ function updateThreeJSTheme() {
 // ============================================
 // INIT
 // ============================================
+// MOBILE NAVIGATION
+// ============================================
+function initMobileNav() {
+  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  const nav = document.getElementById('nav');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  if (!mobileMenuToggle || !nav) return;
+
+  // Toggle menu when hamburger button is clicked
+  mobileMenuToggle.addEventListener('click', () => {
+    mobileMenuToggle.classList.toggle('open');
+    nav.classList.toggle('open');
+    document.body.classList.toggle('menu-open');
+  });
+
+  // Close menu when a nav link is clicked
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenuToggle.classList.remove('open');
+      nav.classList.remove('open');
+      document.body.classList.remove('menu-open');
+    });
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (nav.classList.contains('open') &&
+        !nav.contains(e.target) &&
+        !mobileMenuToggle.contains(e.target)) {
+      mobileMenuToggle.classList.remove('open');
+      nav.classList.remove('open');
+      document.body.classList.remove('menu-open');
+    }
+  });
+}
+
+// ============================================
 function init() {
   initTheme();
   initNavActiveState();
+  initMobileNav();
   fetchData();
 
   // Initialize Three.js after a short delay to ensure DOM is ready
