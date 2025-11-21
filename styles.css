@@ -1079,6 +1079,54 @@ main {
 }
 
 /* ============================================
+   SKELETON LOADING
+   ============================================ */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-secondary) 0%,
+    var(--bg-elevated) 50%,
+    var(--bg-secondary) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-md);
+  color: transparent !important;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-title.skeleton {
+  min-height: 4rem;
+  min-width: 300px;
+  display: inline-block;
+}
+
+.hero-tagline.skeleton {
+  min-height: 2rem;
+  min-width: 400px;
+  max-width: 600px;
+  margin: var(--space-md) auto;
+}
+
+/* ============================================
+   SKILL ICONS (DEVICON)
+   ============================================ */
+.skill-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.skill-tag i {
+  font-size: 1.2rem;
+  color: var(--accent);
+}
+
+.skill-tag:hover i {
+  color: white;
+}
+
+/* ============================================
    IMAGE OPTIMIZATION
    ============================================ */
 img {

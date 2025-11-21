@@ -102,11 +102,37 @@ function renderSEO() {
 // HERO SECTION
 // ============================================
 function renderHero() {
-  const { brand, tagline } = portfolioData;
+  const { brand, tagline, contact } = portfolioData;
+
+  const heroTitle = document.getElementById('hero-title');
+  const heroTagline = document.getElementById('hero-tagline');
+
+  // Remove skeleton classes
+  heroTitle.classList.remove('skeleton');
+  heroTagline.classList.remove('skeleton');
 
   document.getElementById('brand').textContent = brand || 'Portfolio';
-  document.getElementById('hero-title').textContent = brand || 'Your Name';
-  document.getElementById('hero-tagline').textContent = tagline || '';
+  heroTitle.textContent = brand || 'Your Name';
+  heroTagline.textContent = tagline || '';
+
+  // Add resume button if resumeUrl exists
+  if (contact && contact.resumeUrl) {
+    const heroCta = document.getElementById('hero-cta');
+    const resumeBtn = document.createElement('a');
+    resumeBtn.href = contact.resumeUrl;
+    resumeBtn.target = '_blank';
+    resumeBtn.rel = 'noopener';
+    resumeBtn.className = 'btn btn-secondary btn-lg';
+    resumeBtn.innerHTML = `
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px; vertical-align: middle;">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+        <polyline points="7 10 12 15 17 10"></polyline>
+        <line x1="12" y1="15" x2="12" y2="3"></line>
+      </svg>
+      Download Resume
+    `;
+    heroCta.appendChild(resumeBtn);
+  }
 }
 
 // ============================================
@@ -162,6 +188,91 @@ function renderAbout() {
 // ============================================
 // SKILLS SECTION
 // ============================================
+
+// Devicon mapping for common technologies
+const deviconMap = {
+  // Frontend
+  'react': 'devicon-react-original',
+  'next.js': 'devicon-nextjs-plain',
+  'nextjs': 'devicon-nextjs-plain',
+  'vue': 'devicon-vuejs-plain',
+  'vue.js': 'devicon-vuejs-plain',
+  'angular': 'devicon-angularjs-plain',
+  'javascript': 'devicon-javascript-plain',
+  'typescript': 'devicon-typescript-plain',
+  'html': 'devicon-html5-plain',
+  'html5': 'devicon-html5-plain',
+  'css': 'devicon-css3-plain',
+  'css3': 'devicon-css3-plain',
+  'sass': 'devicon-sass-original',
+  'scss': 'devicon-sass-original',
+  'tailwind': 'devicon-tailwindcss-plain',
+  'tailwind css': 'devicon-tailwindcss-plain',
+  'bootstrap': 'devicon-bootstrap-plain',
+
+  // Backend
+  'node.js': 'devicon-nodejs-plain',
+  'nodejs': 'devicon-nodejs-plain',
+  'express': 'devicon-express-original',
+  'express.js': 'devicon-express-original',
+  'python': 'devicon-python-plain',
+  'django': 'devicon-django-plain',
+  'flask': 'devicon-flask-original',
+  'java': 'devicon-java-plain',
+  'spring': 'devicon-spring-plain',
+  'php': 'devicon-php-plain',
+  'laravel': 'devicon-laravel-plain',
+  'ruby': 'devicon-ruby-plain',
+  'rails': 'devicon-rails-plain',
+  'go': 'devicon-go-plain',
+  'rust': 'devicon-rust-plain',
+  'c': 'devicon-c-plain',
+  'c++': 'devicon-cplusplus-plain',
+  'c#': 'devicon-csharp-plain',
+
+  // Database
+  'mongodb': 'devicon-mongodb-plain',
+  'mysql': 'devicon-mysql-plain',
+  'postgresql': 'devicon-postgresql-plain',
+  'redis': 'devicon-redis-plain',
+  'sqlite': 'devicon-sqlite-plain',
+  'firebase': 'devicon-firebase-plain',
+  'prisma': 'devicon-prisma-original',
+
+  // DevOps & Tools
+  'docker': 'devicon-docker-plain',
+  'kubernetes': 'devicon-kubernetes-plain',
+  'git': 'devicon-git-plain',
+  'github': 'devicon-github-original',
+  'github actions': 'devicon-github-original',
+  'gitlab': 'devicon-gitlab-plain',
+  'aws': 'devicon-amazonwebservices-original',
+  'azure': 'devicon-azure-plain',
+  'linux': 'devicon-linux-plain',
+  'nginx': 'devicon-nginx-original',
+  'webpack': 'devicon-webpack-plain',
+  'vscode': 'devicon-vscode-plain',
+  'vs code': 'devicon-vscode-plain',
+  'figma': 'devicon-figma-plain',
+
+  // Mobile
+  'react native': 'devicon-react-original',
+  'flutter': 'devicon-flutter-plain',
+  'swift': 'devicon-swift-plain',
+  'kotlin': 'devicon-kotlin-plain',
+
+  // AI/ML
+  'tensorflow': 'devicon-tensorflow-original',
+  'pytorch': 'devicon-pytorch-original',
+  'pandas': 'devicon-pandas-original',
+  'numpy': 'devicon-numpy-original',
+};
+
+function getDeviconClass(skillName) {
+  const normalizedName = skillName.toLowerCase().trim();
+  return deviconMap[normalizedName] || null;
+}
+
 function renderSkills() {
   if (!portfolioData.skills || portfolioData.skills.length === 0) {
     document.getElementById('skills').style.display = 'none';
@@ -173,7 +284,11 @@ function renderSkills() {
     <div class="skill-group">
       <h3>${skillGroup.group}</h3>
       <div class="skill-items">
-        ${skillGroup.items.map(item => `<span class="skill-tag">${item}</span>`).join('')}
+        ${skillGroup.items.map(item => {
+          const iconClass = getDeviconClass(item);
+          const iconHtml = iconClass ? `<i class="${iconClass}"></i>` : '';
+          return `<span class="skill-tag">${iconHtml}${item}</span>`;
+        }).join('')}
       </div>
     </div>
   `).join('');

@@ -2,7 +2,7 @@
   "brand": "HEIN",
   "tagline": "Liberal Arts Student | Self-Taught Developer | Future IT Project Manager",
   "about": {
-    "avatar": "assets/avatar.jpg",
+    "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
     "bio": "I'm a third-year liberal arts student at Kaichi International University in Japan with a passion for technology and a clear vision for my future in IT project management. Living independently in Japan, I've taught myself modern web development, focusing on Next.js, React, and database management. My unique combination of customer service experience, technical skills, and multilingual capabilities allows me to create technology solutions that truly serve diverse user needs. I'm preparing for the ITPEC FE certification exam in April 2026 as a pathway to transition from developer roles into project management positions."
   },
   "skills": [
@@ -38,7 +38,7 @@
   "projects": [
     {
       "title": "MyApp - Multilingual PWA",
-      "image": "assets/project1.jpg",
+      "image": "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&q=80",
       "short": "A Progressive Web App for health and beauty product information, supporting 5 languages to serve international customers.",
       "longText": "MyApp is a multilingual Progressive Web App (PWA) designed to address real needs I observed while working with international customers at my drugstore.\n\n• Supports Japanese, English, Chinese, Thai, and Korean\n• Health and beauty product information database\n• PWA features for offline access and mobile installation\n• Built to solve real-world communication challenges\n• User-friendly interface for diverse international clientele\n\nThis project combines my customer service experience with technical skills to create practical solutions that bridge language barriers in retail environments.",
       "tags": ["PWA", "Next.js", "Multilingual", "React"],
@@ -49,7 +49,7 @@
     },
     {
       "title": "Product Data Generator (PDG)",
-      "image": "assets/project2.jpg",
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
       "short": "A comprehensive system for managing and generating product data with modern development workflows and automation.",
       "longText": "Product Data Generator is a full-stack application demonstrating modern development practices and automation.\n\n• Built with Next.js for server-side rendering and optimal performance\n• SQLite database with Prisma ORM for type-safe database access\n• GitHub Actions integration for continuous deployment\n• Automated workflows for data processing and validation\n• Scalable architecture supporting future enhancements\n\nThis project showcases my ability to work with modern development tools and implement automated workflows that improve efficiency.",
       "tags": ["Next.js", "SQLite", "Prisma", "GitHub Actions"],
@@ -60,7 +60,7 @@
     },
     {
       "title": "AI Voice Conversion Projects",
-      "image": "assets/project3.jpg",
+      "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80",
       "short": "Exploring AI technologies through voice conversion using RVC (Retrieval-based Voice Conversion) and other AI tools.",
       "longText": "Working with cutting-edge AI technologies to explore voice conversion and machine learning applications.\n\n• Implemented RVC (Retrieval-based Voice Conversion) technology\n• Experimenting with various AI development tools\n• Staying current with emerging AI technologies\n• Building practical understanding of ML workflows\n• Exploring applications of AI in real-world scenarios\n\nThis ongoing exploration keeps me at the forefront of AI development and prepares me for future tech trends.",
       "tags": ["AI", "RVC", "Machine Learning", "Voice Tech"],
@@ -101,6 +101,7 @@
   "testimonials": [],
   "contact": {
     "email": "your.email@example.com",
+    "resumeUrl": "assets/resume.pdf",
     "socials": [
       {
         "name": "GitHub",
@@ -119,6 +120,6 @@
   "seo": {
     "title": "HEIN — Student Developer & Future IT Project Manager",
     "description": "Third-year liberal arts student at Kaichi International University with self-taught web development skills. Building solutions with Next.js, React, and modern technologies while preparing for IT project management career in Japan.",
-    "ogImage": "assets/og.png"
+    "ogImage": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&h=630&fit=crop"
   }
 }
