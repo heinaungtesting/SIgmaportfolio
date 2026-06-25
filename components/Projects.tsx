@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useLocale } from "@/components/Providers";
 import { content } from "@/lib/content";
 import { ExternalLink, CheckCircle2 } from "lucide-react";
+import { TiltCard } from "@/components/TiltCard";
 
 const Github = ({ className }: { className?: string }) => (
   <svg
@@ -61,15 +62,16 @@ export function Projects() {
           {t.items.map((p) => {
             const accent = ACCENTS[p.accent];
             return (
-              <motion.article
-                key={p.slug}
-                variants={{
-                  hidden: { opacity: 0, y: 30 },
-                  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
-                }}
-                className="card gradient-border overflow-hidden group"
-                style={{ ["--accent" as any]: accent.from }}
-              >
+              <TiltCard intensity={0.5} className="rounded-[18px]">
+                <motion.article
+                  key={p.slug}
+                  variants={{
+                    hidden: { opacity: 0, y: 30 },
+                    show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
+                  }}
+                  className="card gradient-border overflow-hidden group"
+                  style={{ ["--accent" as any]: accent.from }}
+                >
                 <div className="p-6 md:p-8">
                   <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
                     <div className="flex-1 min-w-[260px]">
@@ -160,7 +162,8 @@ export function Projects() {
                     background: `radial-gradient(60% 50% at 50% 0%, ${accent.ring}, transparent 70%)`,
                   }}
                 />
-              </motion.article>
+                </motion.article>
+              </TiltCard>
             );
           })}
         </motion.div>

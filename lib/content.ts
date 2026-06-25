@@ -183,13 +183,12 @@ export const content = {
       blurb:
         "I'm open to 2027 new-grad roles (27卒) in AI engineering, full-stack, or backend. If your team builds real products and wants an engineer who ships, let's talk.",
       channels: [
-        { label: "Email", value: "heinaung.testing@gmail.com", href: "mailto:heinaung.testing@gmail.com", icon: "Mail" },
+        { label: "Email", value: "anoslunar199@gmail.com", href: "mailto:anoslunar199@gmail.com", icon: "Mail" },
         { label: "GitHub", value: "@heinaungtesting", href: "https://github.com/heinaungtesting", icon: "Github" },
-        { label: "Site", value: "sigmahein.me", href: "https://sigmahein.me", icon: "Globe" },
       ],
     },
     footer: {
-      built: "Built with Next.js 15, Tailwind CSS, and Framer Motion. Hosted on Vercel.",
+      built: "Built with Next.js 16, Tailwind CSS, and Framer Motion. Hosted on Vercel.",
       rights: "© 2026 Hein Htet Aung",
     },
   },
@@ -372,13 +371,12 @@ export const content = {
       blurb:
         "2027年新卒（27卒）のAIエンジニア・フルスタック・バックエンド職を募集しています。実プロダクトを作るチームで、出荷できるエンジニアが必要な方は、ぜひご連絡ください。",
       channels: [
-        { label: "Email", value: "heinaung.testing@gmail.com", href: "mailto:heinaung.testing@gmail.com", icon: "Mail" },
+        { label: "Email", value: "anoslunar199@gmail.com", href: "mailto:anoslunar199@gmail.com", icon: "Mail" },
         { label: "GitHub", value: "@heinaungtesting", href: "https://github.com/heinaungtesting", icon: "Github" },
-        { label: "Site", value: "sigmahein.me", href: "https://sigmahein.me", icon: "Globe" },
       ],
     },
     footer: {
-      built: "Built with Next.js 15, Tailwind CSS, Framer Motion. Hosted on Vercel.",
+      built: "Built with Next.js 16, Tailwind CSS, and Framer Motion. Hosted on Vercel.",
       rights: "© 2026 Hein Htet Aung",
     },
   },

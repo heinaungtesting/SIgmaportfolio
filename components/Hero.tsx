@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useLocale } from "@/components/Providers";
 import { content } from "@/lib/content";
 import { ArrowDown, Sparkles } from "lucide-react";
+import { ParticleNetwork } from "@/components/ParticleNetwork";
 
 export function Hero() {
   const { locale } = useLocale();
@@ -11,10 +12,17 @@ export function Hero() {
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
-      <div className="absolute inset-0 bg-grid opacity-60" />
+      {/* Particle network background — sits behind everything in hero */}
+      <div className="absolute inset-0" style={{ zIndex: 0 }}>
+        <ParticleNetwork />
+      </div>
+
+      {/* Subtle grid + radial gradient overlays */}
+      <div className="absolute inset-0 bg-grid opacity-40 pointer-events-none" style={{ zIndex: 1 }} />
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 pointer-events-none"
         style={{
+          zIndex: 2,
           background:
             "radial-gradient(60% 60% at 50% 30%, rgba(34,211,238,0.10), transparent 70%), radial-gradient(50% 50% at 80% 60%, rgba(167,139,250,0.10), transparent 70%)",
         }}
@@ -22,19 +30,19 @@ export function Hero() {
 
       {/* Floating gradient orbs */}
       <motion.div
-        className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full opacity-30 blur-3xl"
-        style={{ background: "radial-gradient(circle, #22d3ee 0%, transparent 70%)" }}
+        className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full opacity-25 blur-3xl pointer-events-none"
+        style={{ background: "radial-gradient(circle, #22d3ee 0%, transparent 70%)", zIndex: 1 }}
         animate={{ y: [0, 30, 0], x: [0, -20, 0] }}
         transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full opacity-30 blur-3xl"
-        style={{ background: "radial-gradient(circle, #f472b6 0%, transparent 70%)" }}
+        className="absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full opacity-25 blur-3xl pointer-events-none"
+        style={{ background: "radial-gradient(circle, #f472b6 0%, transparent 70%)", zIndex: 1 }}
         animate={{ y: [0, -30, 0], x: [0, 20, 0] }}
         transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      <div className="relative container mx-auto px-6 max-w-6xl pt-32 pb-20">
+      <div className="relative container mx-auto px-6 max-w-6xl pt-32 pb-20" style={{ zIndex: 3 }}>
         <motion.div
           initial="hidden"
           animate="show"
@@ -150,6 +158,7 @@ export function Hero() {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.4, duration: 1 }}
           className="absolute bottom-10 left-1/2 -translate-x-1/2"
+          style={{ zIndex: 4 }}
         >
           <motion.div
             animate={{ y: [0, 8, 0] }}

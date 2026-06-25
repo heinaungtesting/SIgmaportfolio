@@ -53,7 +53,7 @@ export function Contact() {
           whileInView="show"
           viewport={{ once: true, margin: "-100px" }}
           variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1 } } }}
-          className="grid sm:grid-cols-3 gap-4"
+          className="grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto"
         >
           {t.channels.map((ch) => {
             const Icon = ICONS[ch.icon];
