@@ -17,7 +17,7 @@ export const content = {
       name: "Hein Htet Aung",
       role: "AI Engineer · Full-Stack Developer",
       tagline:
-        "Fourth-year liberal arts student at Kaichi International University building real production systems — Next.js, Supabase, Laravel, Go — and shipping them to live users.",
+        "Fourth-year liberal arts student at Kaichi International University building real production systems — Next.js, Supabase, Laravel, Python — and shipping them to live users.",
       ctaPrimary: "View Projects",
       ctaSecondary: "Get in Touch",
       status: "Open to 2027 new-graduate roles",
@@ -34,7 +34,7 @@ export const content = {
       body: [
         "I'm a Burmese student living in Tokyo, graduating May 2027 from 開智国際大学 (Kaichi International University). I taught myself web development while working part-time at Sugi Pharmacy, and I now build production apps end-to-end — from requirements and database design to deployment and operations.",
         "I focus on the intersection of AI tooling and full-stack engineering: I use AI as a development accelerator, but every architectural decision, every error debug, and every production verification is mine.",
-        "I write code in TypeScript, Go, PHP, and Python. I speak Japanese, Burmese, and English. I run a 5-agent personal AI system on a VPS for my own job hunt and side projects.",
+        "I write code in TypeScript, PHP, and Python. I speak Japanese, Burmese, and English. I run a 5-agent personal AI system on a VPS for my own job hunt and side projects.",
       ],
       highlights: [
         { icon: "GraduationCap", text: "Graduating May 2027 — Kaichi International University" },
@@ -60,7 +60,7 @@ export const content = {
         {
           name: "Systems & Infra",
           color: "from-violet-500 to-purple-500",
-          items: ["Go (CLI + concurrency)", "Python", "Docker Compose", "Vercel", "GitHub Actions"],
+          items: ["Python", "Docker Compose", "Vercel", "GitHub Actions"],
         },
         {
           name: "AI / Automation",
@@ -205,7 +205,7 @@ export const content = {
       name: "Hein Htet Aung",
       role: "AIエンジニア・フルスタック開発者",
       tagline:
-        "開智国際大学4年。次の世代のプロダクトを作るため、Next.js / Supabase / Laravel / Go を个人で学び、実サービスとして公開まで経験してきました。",
+        "開智国際大学4年。次の世代のプロダクトを作るため、Next.js / Supabase / Laravel / Python を个人で学び、実サービスとして公開まで経験してきました。",
       ctaPrimary: "制作物を見る",
       ctaSecondary: "連絡する",
       status: "2027年新卒採用（27卒）積極応募中",
@@ -222,7 +222,7 @@ export const content = {
       body: [
         "ミャンマー出身、東京在住。2027年5月に開智国際大学を卒業予定。在学中、ドラッグストアでのアルバイトと両立しながら独学でWeb開発を学び、要件定義からDB設計、本番運用までを一人で経験しました。",
         "AIツールは開発を加速させるための手段として使っていますが、設計判断・エラー解決・動作確認はすべて自分で行っています。",
-        "TypeScript / Go / PHP / Pythonでコードを書き、日本語・ミャンマー語・英語を話します。自作の5エージェント・パーソナルAIシステムをVPS上で運用し、就活と個人プロジェクトの両方に活用しています。",
+        "TypeScript / PHP / Pythonでコードを書き、日本語・ミャンマー語・英語を話します。自作の5エージェント・パーソナルAIシステムをVPS上で運用し、就活と個人プロジェクトの両方に活用しています。",
       ],
       highlights: [
         { icon: "GraduationCap", text: "2027年5月卒業予定 — 開智国際大学" },
@@ -248,7 +248,7 @@ export const content = {
         {
           name: "システム・インフラ",
           color: "from-violet-500 to-purple-500",
-          items: ["Go (CLI + 並行処理)", "Python", "Docker Compose", "Vercel", "GitHub Actions"],
+          items: ["Python", "Docker Compose", "Vercel", "GitHub Actions"],
         },
         {
           name: "AI / 自動化",

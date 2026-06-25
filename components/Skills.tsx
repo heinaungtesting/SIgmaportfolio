@@ -63,8 +63,7 @@ export function Skills() {
                   <motion.span
                     key={item}
                     initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
+                    animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.4, delay: 0.05 + i * 0.04 }}
                     className="chip"
                   >

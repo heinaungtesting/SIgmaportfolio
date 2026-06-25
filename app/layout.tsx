@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://sigmahein.me"),
   title: "Hein Htet Aung — AI Engineer / Full-Stack Developer",
   description:
-    "Fourth-year student at Kaichi International University. Building production web apps — Next.js, Supabase, Laravel, Go — and shipping them to live users. Open to 2027 new-graduate roles.",
+    "Fourth-year student at Kaichi International University. Building production web apps — Next.js, Supabase, Laravel, Python — and shipping them to live users. Open to 2027 new-graduate roles.",
   keywords: [
     "Hein Htet Aung",
     "AI Engineer",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Hein Htet Aung — AI Engineer / Full-Stack Developer",
-    description: "Production web apps · Next.js · Supabase · Laravel · Go",
+    description: "Production web apps · Next.js · Supabase · Laravel · Python",
   },
   robots: { index: true, follow: true },
 };
