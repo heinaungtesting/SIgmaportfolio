@@ -146,12 +146,32 @@ export const content = {
       subtitle: "Real work, not coursework",
       items: [
         {
-          period: "Apr 2022 → Present",
+          period: "Jun 2023 → Jun 2024",
+          role: "Part-time · Burger King",
+          location: "Tokyo",
+          bullets: [
+            "Kitchen + register rotation under high-volume rush periods",
+            "Strict food-safety / FIFO / cross-contamination discipline",
+            "Multilingual register handover with international team",
+          ],
+        },
+        {
+          period: "Jun 2024 → Jun 2025",
+          role: "Part-time · バリ男 (Bario Ramen)",
+          location: "Tokyo",
+          bullets: [
+            "Ramen shop operations: prep, cooking, plating, customer service",
+            "Sole closing shift on multiple days — cash-up, sanitation, inventory",
+            "Direct customer interaction in Japanese for one year straight",
+          ],
+        },
+        {
+          period: "Jun 2025 → Present",
           role: "Part-time · Sugi Pharmacy (スギ薬局)",
           location: "Tokyo",
           bullets: [
             "Daily customer service in Japanese — register, OTC consultation, product recommendation",
-            "Built and ship a private in-house mobile POS/tap app to solve slow-network register hangs",
+            "Built and shipped a private in-house mobile POS/tap app to solve slow-network register hangs",
             "Worked under real time pressure with a fixed till and real-money transactions",
           ],
         },
@@ -334,7 +354,27 @@ export const content = {
       subtitle: "課題ではなく、実業務",
       items: [
         {
-          period: "2022/04 → 現在",
+          period: "2023/06 → 2024/06",
+          role: "アルバイト · バーガーキング",
+          location: "東京",
+          bullets: [
+            "ピーク時の厨房とレジのローテーション業務",
+            "食品安全・FIFO・二次汚染防止の運用",
+            "多国籍スタッフとの multilingual な引き継ぎ",
+          ],
+        },
+        {
+          period: "2024/06 → 2025/06",
+          role: "アルバイト · バリ男（Bario Ramen）",
+          location: "東京",
+          bullets: [
+            "ラーメン店の仕込み・調理・提供・接客を一通り担当",
+            "複数日、一人で閉店業務（金銭精算・清掃・在庫）を担当",
+            "1年間、毎日日本語で直接接客を継続",
+          ],
+        },
+        {
+          period: "2025/06 → 現在",
           role: "アルバイト · スギ薬局",
           location: "東京",
           bullets: [
