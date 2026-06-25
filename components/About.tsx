@@ -13,7 +13,7 @@ export function About() {
   const t = content[locale].about;
 
   return (
-    <section id="about" className="relative py-32 px-6">
+    <section id="about" key={`about-${locale}`} className="relative py-32 px-6">
       <div className="container mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

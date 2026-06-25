@@ -28,7 +28,7 @@ export function Projects() {
   const t = content[locale].projects;
 
   return (
-    <section id="projects" className="relative py-32 px-6">
+    <section id="projects" key={`projects-${locale}`} className="relative py-32 px-6">
       <div className="container mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

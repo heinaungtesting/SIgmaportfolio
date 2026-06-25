@@ -23,7 +23,7 @@ export function Contact() {
   const t = content[locale].contact;
 
   return (
-    <section id="contact" className="relative py-32 px-6 overflow-hidden">
+    <section id="contact" key={`contact-${locale}`} className="relative py-32 px-6 overflow-hidden">
       <div
         className="absolute inset-0 opacity-30"
         style={{
