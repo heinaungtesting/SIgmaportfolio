@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useLocale } from "@/components/Providers";
 import { content } from "@/lib/content";
 import { Mail, Globe, ArrowUpRight } from "lucide-react";
 
@@ -19,11 +18,10 @@ const Github = ({ className }: { className?: string }) => (
 const ICONS: Record<string, any> = { Mail, Github, Globe };
 
 export function Contact() {
-  const { locale } = useLocale();
-  const t = content[locale].contact;
+  const t = content.contact;
 
   return (
-    <section id="contact" key={`contact-${locale}`} className="relative py-32 px-6 overflow-hidden">
+    <section id="contact" className="relative py-32 px-6 overflow-hidden">
       <div
         className="absolute inset-0 opacity-30"
         style={{
@@ -91,8 +89,8 @@ export function Contact() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="text-center mt-16"
         >
-          <p className="text-sm text-[var(--fg-3)]">{content[locale].footer.built}</p>
-          <p className="text-xs text-[var(--fg-3)] mt-2">{content[locale].footer.rights}</p>
+          <p className="text-sm text-[var(--fg-3)]">{content.footer.built}</p>
+          <p className="text-xs text-[var(--fg-3)] mt-2">{content.footer.rights}</p>
         </motion.div>
       </div>
     </section>

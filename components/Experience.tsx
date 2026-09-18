@@ -1,15 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useLocale } from "@/components/Providers";
 import { content } from "@/lib/content";
 
 export function Experience() {
-  const { locale } = useLocale();
-  const t = content[locale].experience;
+  const t = content.experience;
 
   return (
-    <section id="experience" key={`experience-${locale}`} className="relative py-32 px-6">
+    <section id="experience" className="relative py-32 px-6">
       <div className="container mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

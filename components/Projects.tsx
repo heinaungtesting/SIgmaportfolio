@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useLocale } from "@/components/Providers";
 import { content } from "@/lib/content";
 import { ExternalLink, CheckCircle2 } from "lucide-react";
 import { TiltCard } from "@/components/TiltCard";
@@ -24,11 +23,10 @@ const ACCENTS: Record<string, { from: string; to: string; ring: string }> = {
 };
 
 export function Projects() {
-  const { locale } = useLocale();
-  const t = content[locale].projects;
+  const t = content.projects;
 
   return (
-    <section id="projects" key={`projects-${locale}`} className="relative py-32 px-6">
+    <section id="projects" className="relative py-32 px-6">
       <div className="container mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -62,9 +60,8 @@ export function Projects() {
           {t.items.map((p) => {
             const accent = ACCENTS[p.accent];
             return (
-              <TiltCard intensity={0.5} className="rounded-[18px]">
+              <TiltCard key={p.slug} intensity={0.5} className="rounded-[18px]">
                 <motion.article
-                  key={p.slug}
                   variants={{
                     hidden: { opacity: 0, y: 30 },
                     show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
@@ -74,10 +71,10 @@ export function Projects() {
                 >
                 <div className="p-6 md:p-8">
                   <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
-                    <div className="flex-1 min-w-[260px]">
+                    <div className="flex-1 min-w-0 basis-full sm:basis-auto">
                       <div className="flex items-center gap-3 mb-2">
                         <span
-                          className="size-3 rounded-full"
+                          className="size-3 shrink-0 rounded-full"
                           style={{ background: `linear-gradient(135deg, ${accent.from}, ${accent.to})` }}
                         />
                         <h3 className="text-2xl md:text-3xl font-bold tracking-tight">{p.title}</h3>
@@ -136,7 +133,7 @@ export function Projects() {
                       className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium border border-[var(--border-strong)] bg-white/[0.02] hover:bg-white/[0.06] transition-all hover:border-[var(--accent)]"
                     >
                       <Github className="size-4" />
-                      Source
+                      ソースコード
                     </a>
                     {p.live && (
                       <a
@@ -149,7 +146,7 @@ export function Projects() {
                         }}
                       >
                         <ExternalLink className="size-4" />
-                        Live Demo
+                        サイトを見る
                       </a>
                     )}
                   </div>

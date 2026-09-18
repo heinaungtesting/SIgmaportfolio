@@ -1,13 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useLocale } from "@/components/Providers";
 import { content } from "@/lib/content";
 import { useEffect, useState } from "react";
 
 export function Navbar() {
-  const { locale, setLocale } = useLocale();
-  const t = content[locale];
+  const t = content;
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -33,15 +31,16 @@ export function Navbar() {
       className="fixed top-0 inset-x-0 z-50 flex justify-center px-4 pt-4"
     >
       <nav
+        aria-label="メインナビゲーション"
         className={`flex items-center gap-2 rounded-full px-3 py-2 transition-all duration-500 ${
           scrolled
             ? "bg-[rgba(10,12,20,0.72)] backdrop-blur-xl border border-[var(--border)] shadow-lg"
             : "bg-transparent border border-transparent"
         }`}
       >
-        <a href="#hero" className="px-3 py-1.5 text-sm font-semibold tracking-tight">
+        <a href="#hero" aria-label="ページの先頭へ" className="px-3 py-1.5 text-sm font-semibold tracking-tight">
           <span className="glow-text">σ</span>
-          <span className="ml-2 hidden sm:inline">Hein</span>
+          <span className="ml-2 hidden sm:inline">ヘイン</span>
         </a>
         <div className="hidden md:flex items-center gap-1">
           {items.map((item) => (
@@ -54,20 +53,9 @@ export function Navbar() {
             </a>
           ))}
         </div>
-        <div className="flex items-center gap-1 ml-1 pl-2 border-l border-[var(--border)]">
-          {(["en", "ja"] as const).map((l) => (
-            <button
-              key={l}
-              onClick={() => setLocale(l)}
-              className={`px-2.5 py-1 text-xs font-mono uppercase rounded-full transition-all ${
-                locale === l
-                  ? "bg-[var(--accent)] text-black"
-                  : "text-[var(--fg-2)] hover:text-[var(--fg)]"
-              }`}
-            >
-              {l}
-            </button>
-          ))}
+        <div className="flex md:hidden items-center gap-1">
+          <a href="#projects" className="px-3 py-1.5 text-sm text-[var(--fg-2)]">制作物</a>
+          <a href="#contact" className="px-3 py-1.5 text-sm text-[var(--fg-2)]">お問い合わせ</a>
         </div>
       </nav>
     </motion.header>

@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useLocale } from "@/components/Providers";
 import { content } from "@/lib/content";
 import { GraduationCap, MapPin, Languages, Heart } from "lucide-react";
 import Image from "next/image";
@@ -9,11 +8,10 @@ import Image from "next/image";
 const ICONS: Record<string, any> = { GraduationCap, MapPin, Languages, Heart };
 
 export function About() {
-  const { locale } = useLocale();
-  const t = content[locale].about;
+  const t = content.about;
 
   return (
-    <section id="about" key={`about-${locale}`} className="relative py-32 px-6">
+    <section id="about" className="relative py-32 px-6">
       <div className="container mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -76,7 +74,7 @@ export function About() {
             <div className="absolute inset-0 rounded-3xl overflow-hidden border border-[var(--border-strong)] shadow-2xl">
               <Image
                 src="/avatar.jpg"
-                alt="Hein Htet Aung"
+                alt="ヘイン テッ アウンのプロフィール写真"
                 fill
                 priority
                 sizes="280px"
@@ -92,7 +90,7 @@ export function About() {
             >
               <span className="flex items-center gap-1.5">
                 <span className="size-2 rounded-full bg-emerald-400 pulse-dot" />
-                <span className="text-emerald-300">Available 27卒</span>
+                <span className="text-emerald-300">2027年新卒・就職活動中</span>
               </span>
             </motion.div>
           </motion.div>
