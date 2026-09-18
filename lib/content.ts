@@ -1,425 +1,111 @@
-// Centralized content for the portfolio. Bilingual (en / ja).
-// All copy is grounded in real work — no fabricated metrics.
-
-export type Locale = "en" | "ja";
-
+// 公開用の日本語原稿。本人のプロフィールと開発実績に基づく。
 export const content = {
-  en: {
-    nav: {
-      about: "About",
-      skills: "Skills",
-      projects: "Projects",
-      experience: "Experience",
-      contact: "Contact",
-    },
-    hero: {
-      greeting: "Hi, I'm",
-      name: "Hein Htet Aung",
-      role: "AI Engineer · Full-Stack Developer",
-      tagline:
-        "Fourth-year liberal arts student at Kaichi International University building real production systems — Next.js, Supabase, Laravel, Python — and shipping them to live users.",
-      ctaPrimary: "View Projects",
-      ctaSecondary: "Get in Touch",
-      status: "Open to 2027 new-graduate roles",
-      stats: [
-        { label: "Live Deployments", value: "3" },
-        { label: "Repositories", value: "9+" },
-        { label: "Languages", value: "4" },
-        { label: "JLPT", value: "N1" },
-      ],
-    },
-    about: {
-      title: "About",
-      heading: "Self-taught engineer shipping real products",
-      body: [
-        "I'm a Burmese student living in Tokyo, graduating May 2027 from 開智国際大学 (Kaichi International University). I taught myself web development while working part-time at Sugi Pharmacy, and I now build production apps end-to-end — from requirements and database design to deployment and operations.",
-        "I focus on the intersection of AI tooling and full-stack engineering: I use AI as a development accelerator, but every architectural decision, every error debug, and every production verification is mine.",
-        "I write code in TypeScript, PHP, and Python. I speak Japanese, Burmese, and English. I run a 5-agent personal AI system on a VPS for my own job hunt and side projects.",
-      ],
-      highlights: [
-        { icon: "GraduationCap", text: "Graduating May 2027 — Kaichi International University" },
-        { icon: "MapPin", text: "Tokyo, Japan · 留学 visa" },
-        { icon: "Languages", text: "Japanese (N1) · Burmese (native) · English (TOEIC 830)" },
-        { icon: "Heart", text: "Daily Vipassana meditator" },
-      ],
-    },
-    skills: {
-      title: "Skills",
-      subtitle: "Stack I actually ship with — not a resume keyword dump",
-      groups: [
-        {
-          name: "Frontend",
-          color: "from-cyan-500 to-blue-500",
-          items: ["Next.js 15 (App Router)", "React 19", "TypeScript", "Tailwind CSS", "Framer Motion"],
-        },
-        {
-          name: "Backend & DB",
-          color: "from-emerald-500 to-teal-500",
-          items: ["Supabase", "PostgreSQL", "Prisma", "Laravel (PHP)", "REST API design", "Row-Level Security"],
-        },
-        {
-          name: "Systems & Infra",
-          color: "from-violet-500 to-purple-500",
-          items: ["Python", "Docker Compose", "Vercel", "GitHub Actions"],
-        },
-        {
-          name: "AI / Automation",
-          color: "from-pink-500 to-rose-500",
-          items: ["Multi-agent orchestration", "Prompt engineering", "LLM workflows", "Voice synthesis (MiniMax)", "RAG basics"],
-        },
-        {
-          name: "Product & Process",
-          color: "from-amber-500 to-orange-500",
-          items: ["Solo full SDLC", "Requirements → design → ship", "Real-user testing", "Multilingual UX (JP/EN)", "Daily ops with Kanban"],
-        },
-      ],
-    },
-    projects: {
-      title: "Projects",
-      subtitle: "Three production apps — built, deployed, and used by real people",
-      items: [
-        {
-          slug: "sportsmatch",
-          title: "SportsMatch Tokyo",
-          period: "Nov 2025 → Apr 2026",
-          tagline: "Find sports partners in Tokyo. EN/JP. Real-time group chat.",
-          description:
-            "A bilingual web app that helps people in Tokyo find sports partners, join sessions, and coordinate via realtime group chat. Built solo — frontend, backend, database, realtime, auth, RBAC, i18n, deployment.",
-          tech: ["Next.js 15", "Supabase", "PostgreSQL", "Prisma", "Realtime", "next-intl", "Zod", "Vercel"],
-          features: [
-            "Session search & join flow",
-            "Realtime group chat (Supabase Realtime)",
-            "Three roles: Player / Organiser / Admin",
-            "EN/JP UI with next-intl",
-            "Row-Level Security on every table",
-            "Admin console for users / facilities / reports",
-          ],
-          live: "https://sportsmatch-tokyo.vercel.app",
-          repo: "https://github.com/heinaungtesting/webresevation",
-          status: "Live · v1 in production",
-          accent: "cyan",
-        },
-        {
-          slug: "fullmedia",
-          title: "Full Media Project",
-          period: "Dec 2024 → Jan 2025",
-          tagline: "News/media platform. Laravel API + Vue 3 SPA + Docker.",
-          description:
-            "Full-stack news/media platform with separated Laravel backend, Vue 3 frontend, and MySQL — connected through a Sanctum-authenticated API. Includes view-tracking-based trending and admin CMS.",
-          tech: ["Laravel 11", "PHP 8", "Vue 3", "TypeScript", "Vuex", "Axios", "MySQL", "Docker Compose", "Sanctum"],
-          features: [
-            "Sanctum API + Vue 3 SPA",
-            "Article / category / comment CRUD",
-            "View-log-based trending algorithm",
-            "Admin dashboard (Livewire + AdminLTE)",
-            "Docker Compose multi-container dev env",
-          ],
-          live: null,
-          repo: "https://github.com/heinaungtesting/full-media-project",
-          status: "Source public · API + frontend split",
-          accent: "emerald",
-        },
-        {
-          slug: "pos",
-          title: "POS System",
-          period: "Oct 2024 → Dec 2025",
-          tagline: "Store POS. Laravel + Blade + jQuery + Bootstrap.",
-          description:
-            "Role-separated POS system: admin side handles products, categories, orders, and payment methods; customer side browses, carts, and checks out. Built to study real retail flows end-to-end.",
-          tech: ["Laravel", "Blade", "jQuery", "Bootstrap", "Tailwind", "Breeze", "Sanctum", "Socialite", "Vite", "MySQL"],
-          features: [
-            "Admin / customer role separation",
-            "Product CRUD + categories",
-            "Cart + checkout + order history",
-            "Payment-method management",
-            "Comments / ratings / inquiries",
-          ],
-          live: null,
-          repo: "https://github.com/heinaungtesting/pos",
-          status: "Source public · feature-complete",
-          accent: "violet",
-        },
-      ],
-    },
-    experience: {
-      title: "Experience",
-      subtitle: "Real work, not coursework",
-      items: [
-        {
-          period: "Jun 2023 → Jun 2024",
-          role: "Part-time · Burger King",
-          location: "Tokyo",
-          bullets: [
-            "Kitchen + register rotation under high-volume rush periods",
-            "Strict food-safety / FIFO / cross-contamination discipline",
-            "Multilingual register handover with international team",
-          ],
-        },
-        {
-          period: "Jun 2024 → Jun 2025",
-          role: "Part-time · バリ男 (Bario Ramen)",
-          location: "Tokyo",
-          bullets: [
-            "Ramen shop operations: prep, cooking, plating, customer service",
-            "Sole closing shift on multiple days — cash-up, sanitation, inventory",
-            "Direct customer interaction in Japanese for one year straight",
-          ],
-        },
-        {
-          period: "Jun 2025 → Present",
-          role: "Part-time · Sugi Pharmacy (スギ薬局)",
-          location: "Tokyo",
-          bullets: [
-            "Daily customer service in Japanese — register, OTC consultation, product recommendation",
-            "Built and shipped a private in-house mobile POS/tap app to solve slow-network register hangs",
-            "Worked under real time pressure with a fixed till and real-money transactions",
-          ],
-        },
-        {
-          period: "Mar 2025 → Present",
-          role: "Sigma — personal multi-agent system (self-built)",
-          location: "Hetzner VPS · Hermes Agent",
-          bullets: [
-            "5-agent swarm: Sigma orchestrator + Ares / Kronos / Plutus / Hermes-worker",
-            "Cron-driven job-hunt pipeline, daily morning briefing, voice reply pipeline",
-            "Telegram-first personal ops: job hunt, schedule, projects, side hustles",
-          ],
-        },
-        {
-          period: "Nov 2025 → Apr 2026",
-          role: "SportsMatch Tokyo — solo full SDLC",
-          location: "Production · Vercel",
-          bullets: [
-            "Requirements, DB schema, RLS policies, realtime chat, i18n, deploy — all me",
-            "67 bugs triaged, 7 Critical + 4 readiness criteria shipped to launch",
-            "Vercel → Telegram build notifications via signed webhook bridge",
-          ],
-        },
-      ],
-    },
-    contact: {
-      title: "Get in Touch",
-      subtitle: "2027 new-graduate roles · AI engineer / full-stack / backend",
-      blurb:
-        "I'm open to 2027 new-grad roles (27卒) in AI engineering, full-stack, or backend. If your team builds real products and wants an engineer who ships, let's talk.",
-      channels: [
-        { label: "Email", value: "anoslunar199@gmail.com", href: "mailto:anoslunar199@gmail.com", icon: "Mail" },
-        { label: "GitHub", value: "@heinaungtesting", href: "https://github.com/heinaungtesting", icon: "Github" },
-      ],
-    },
-    footer: {
-      built: "Built with Next.js 16, Tailwind CSS, and Framer Motion. Hosted on Vercel.",
-      rights: "© 2026 Hein Htet Aung",
-    },
+  nav: { about: "自己紹介", skills: "スキル", projects: "制作物", experience: "経歴", contact: "お問い合わせ" },
+  hero: {
+    greeting: "ヘイン テッ アウン",
+    name: "Hein Htet Aung",
+    role: "フルスタック開発者",
+    tagline: "現場の困りごとを見つけ、使う人と一緒に改善する。独学で学んだWeb開発を生かし、職場で使われる業務アプリや、東京でスポーツ仲間を探すサービスを個人で開発しています。",
+    ctaPrimary: "制作物を見る",
+    ctaSecondary: "お問い合わせ",
+    status: "2027年3月卒業予定・新卒エンジニア職を志望",
+    stats: [
+      { label: "業務アプリを利用する同僚", value: "7名" },
+      { label: "約2時間かかっていた集計", value: "10〜20分" },
+      { label: "日本語能力試験", value: "N1" },
+      { label: "TOEIC L&R", value: "830点" },
+    ],
   },
-  ja: {
-    nav: {
-      about: "自己紹介",
-      skills: "スキル",
-      projects: "制作物",
-      experience: "経歴",
-      contact: "お問い合わせ",
-    },
-    hero: {
-      greeting: "こんにちは、",
-      name: "Hein Htet Aung",
-      role: "AIエンジニア・フルスタック開発者",
-      tagline:
-        "開智国際大学4年。次の世代のプロダクトを作るため、Next.js / Supabase / Laravel / Python を个人で学び、実サービスとして公開まで経験してきました。",
-      ctaPrimary: "制作物を見る",
-      ctaSecondary: "連絡する",
-      status: "2027年新卒採用（27卒）積極応募中",
-      stats: [
-        { label: "公開中のサービス", value: "3" },
-        { label: "公開リポジトリ", value: "9+" },
-        { label: "使用言語", value: "4" },
-        { label: "JLPT", value: "N1" },
-      ],
-    },
-    about: {
-      title: "自己紹介",
-      heading: "自分で学び、実プロダクトを出荷するエンジニア",
-      body: [
-        "ミャンマー出身、東京在住。2027年5月に開智国際大学を卒業予定。在学中、ドラッグストアでのアルバイトと両立しながら独学でWeb開発を学び、要件定義からDB設計、本番運用までを一人で経験しました。",
-        "AIツールは開発を加速させるための手段として使っていますが、設計判断・エラー解決・動作確認はすべて自分で行っています。",
-        "TypeScript / PHP / Pythonでコードを書き、日本語・ミャンマー語・英語を話します。自作の5エージェント・パーソナルAIシステムをVPS上で運用し、就活と個人プロジェクトの両方に活用しています。",
-      ],
-      highlights: [
-        { icon: "GraduationCap", text: "2027年5月卒業予定 — 開智国際大学" },
-        { icon: "MapPin", text: "日本・東京 · 留学ビザ" },
-        { icon: "Languages", text: "日本語 (N1) · ミャンマー語 (母語) · 英語 (TOEIC 830)" },
-        { icon: "Heart", text: "ヴィパッサナー瞑想を日々実践" },
-      ],
-    },
-    skills: {
-      title: "スキル",
-      subtitle: "実際に本番で使っている技術だけ",
-      groups: [
-        {
-          name: "フロントエンド",
-          color: "from-cyan-500 to-blue-500",
-          items: ["Next.js 15 (App Router)", "React 19", "TypeScript", "Tailwind CSS", "Framer Motion"],
-        },
-        {
-          name: "バックエンド・DB",
-          color: "from-emerald-500 to-teal-500",
-          items: ["Supabase", "PostgreSQL", "Prisma", "Laravel (PHP)", "REST API設計", "Row-Level Security"],
-        },
-        {
-          name: "システム・インフラ",
-          color: "from-violet-500 to-purple-500",
-          items: ["Python", "Docker Compose", "Vercel", "GitHub Actions"],
-        },
-        {
-          name: "AI / 自動化",
-          color: "from-pink-500 to-rose-500",
-          items: ["マルチエージェント設計", "プロンプト設計", "LLMワークフロー", "音声合成 (MiniMax)", "RAG基礎"],
-        },
-        {
-          name: "プロダクト・プロセス",
-          color: "from-amber-500 to-orange-500",
-          items: ["一人でフルSDLC", "要件 → 設計 → 出荷", "実ユーザーテスト", "多言語UX (JP/EN)", "Kanbanで日常運用"],
-        },
-      ],
-    },
-    projects: {
-      title: "制作物",
-      subtitle: "実際に作って公開した3つのサービス",
-      items: [
-        {
-          slug: "sportsmatch",
-          title: "SportsMatch Tokyo",
-          period: "2025/11 → 2026/04",
-          tagline: "東京でスポーツ仲間を探す。日英対応。リアルタイムチャット付き。",
-          description:
-            "東京在住者がスポーツの相手や参加可能なセッションを見つけ、参加後のグループチャットまでできるWebアプリ。要件定義・画面設計・DB設計・実装・認証・ロール管理・多言語対応・デプロイまでを一人で担当。",
-          tech: ["Next.js 15", "Supabase", "PostgreSQL", "Prisma", "Realtime", "next-intl", "Zod", "Vercel"],
-          features: [
-            "セッション検索・参加フロー",
-            "Supabase Realtime によるグループチャット",
-            "3つのロール（Player / Organiser / Admin）",
-            "next-intl による日英UI",
-            "全テーブルに Row-Level Security",
-            "ユーザー / 施設 / レポート管理画面",
-          ],
-          live: "https://sportsmatch-tokyo.vercel.app",
-          repo: "https://github.com/heinaungtesting/webresevation",
-          status: "本番稼働中 · v1",
-          accent: "cyan",
-        },
-        {
-          slug: "fullmedia",
-          title: "Full Media Project",
-          period: "2024/12 → 2025/01",
-          tagline: "ニュースメディア・フルスタック。Laravel API + Vue 3 SPA + Docker。",
-          description:
-            "Laravel バックエンドと Vue 3 フロントエンドを分離し、Sanctum 認証APIで接続したニュース/メディアプラットフォーム。閲覧ログを使ったトレンド表示と管理画面CMSを含む。",
-          tech: ["Laravel 11", "PHP 8", "Vue 3", "TypeScript", "Vuex", "Axios", "MySQL", "Docker Compose", "Sanctum"],
-          features: [
-            "Sanctum API + Vue 3 SPA",
-            "記事 / カテゴリ / コメント CRUD",
-            "閲覧ログによるトレンド表示",
-            "管理画面（Livewire + AdminLTE）",
-            "Docker Compose マルチコンテナ開発環境",
-          ],
-          live: null,
-          repo: "https://github.com/heinaungtesting/full-media-project",
-          status: "ソース公開 · API + フロントエンド分離",
-          accent: "emerald",
-        },
-        {
-          slug: "pos",
-          title: "POS System",
-          period: "2024/10 → 2025/12",
-          tagline: "店舗向けPOSシステム。Laravel + Blade + jQuery + Bootstrap。",
-          description:
-            "管理者と顧客でロールを分離した店舗向けPOSシステム。管理者は商品・カテゴリ・注文・決済を管理し、顧客は商品の閲覧・カート・チェックアウトができる。実店舗の業務フローを学ぶために制作。",
-          tech: ["Laravel", "Blade", "jQuery", "Bootstrap", "Tailwind", "Breeze", "Sanctum", "Socialite", "Vite", "MySQL"],
-          features: [
-            "管理者 / 顧客のロール分離",
-            "商品 CRUD + カテゴリ管理",
-            "カート + チェックアウト + 注文履歴",
-            "決済方法管理",
-            "コメント・評価・問い合わせ機能",
-          ],
-          live: null,
-          repo: "https://github.com/heinaungtesting/pos",
-          status: "ソース公開 · 機能完成",
-          accent: "violet",
-        },
-      ],
-    },
-    experience: {
-      title: "経歴",
-      subtitle: "課題ではなく、実業務",
-      items: [
-        {
-          period: "2023/06 → 2024/06",
-          role: "アルバイト · バーガーキング",
-          location: "東京",
-          bullets: [
-            "ピーク時の厨房とレジのローテーション業務",
-            "食品安全・FIFO・二次汚染防止の運用",
-            "多国籍スタッフとの multilingual な引き継ぎ",
-          ],
-        },
-        {
-          period: "2024/06 → 2025/06",
-          role: "アルバイト · バリ男（Bario Ramen）",
-          location: "東京",
-          bullets: [
-            "ラーメン店の仕込み・調理・提供・接客を一通り担当",
-            "複数日、一人で閉店業務（金銭精算・清掃・在庫）を担当",
-            "1年間、毎日日本語で直接接客を継続",
-          ],
-        },
-        {
-          period: "2025/06 → 現在",
-          role: "アルバイト · スギ薬局",
-          location: "東京",
-          bullets: [
-            "日本語での接客（レジ、OTC相談、商品提案）を日々担当",
-            "通信が遅い現場課題を解決するため、社内向けの簡易POS/タップアプリを自作・運用",
-            "実金銭を扱う環境で、時間的プレッシャーの中で正確性を維持",
-          ],
-        },
-        {
-          period: "2025/03 → 現在",
-          role: "Sigma — 自作マルチエージェントシステム",
-          location: "Hetzner VPS · Hermes Agent",
-          bullets: [
-            "5エージェント体制：Sigma オーケストレーター + Ares / Kronos / Plutus / Hermes-worker",
-            "就活パイプライン、定期モーニングブリーフィング、音声応答パイプライン",
-            "就活・スケジュール・プロジェクト管理をTelegram起点で統合",
-          ],
-        },
-        {
-          period: "2025/11 → 2026/04",
-          role: "SportsMatch Tokyo — 一人でフルSDLC",
-          location: "本番 · Vercel",
-          bullets: [
-            "要件定義、DB設計、RLS、Realtimeチャット、i18n、デプロイまで担当",
-            "67件のバグをトリアージし、Critical 7件 + 公開判定基準4件を公開",
-            "Vercel → Telegram ビルド通知Webhookを署名付きで実装",
-          ],
-        },
-      ],
-    },
-    contact: {
-      title: "お問い合わせ",
-      subtitle: "2027年新卒 · AIエンジニア / フルスタック / バックエンド",
-      blurb:
-        "2027年新卒（27卒）のAIエンジニア・フルスタック・バックエンド職を募集しています。実プロダクトを作るチームで、出荷できるエンジニアが必要な方は、ぜひご連絡ください。",
-      channels: [
-        { label: "Email", value: "anoslunar199@gmail.com", href: "mailto:anoslunar199@gmail.com", icon: "Mail" },
-        { label: "GitHub", value: "@heinaungtesting", href: "https://github.com/heinaungtesting", icon: "Github" },
-      ],
-    },
-    footer: {
-      built: "Built with Next.js 16, Tailwind CSS, and Framer Motion. Hosted on Vercel.",
-      rights: "© 2026 Hein Htet Aung",
-    },
+  about: {
+    title: "自己紹介",
+    heading: "課題の発見から、開発・運用・改善まで",
+    body: [
+      "ミャンマー出身、東京在住のヘイン テッ アウンです。開智国際大学 国際教養学部に在籍し、2027年3月に卒業予定です。アルバイトと両立しながら独学でWeb開発を学び、画面の実装からデータベース設計、デプロイ、運用まで取り組んできました。",
+      "スギ薬局のアルバイトでは、紙と電卓で行っていた販売実績・ポイント集計に課題を感じ、業務アプリを開発しました。自分用から始めた仕組みを同僚7名が使う形へ広げ、利用者の声をもとにオフライン対応などの改善を続けています。",
+      "大切にしているのは、機能を作ることだけでなく、使う人の課題が解決できたかを確かめることです。今後はバックエンドやソフトウェア設計の理解を深め、AIにも学びを広げながら、チームでプロダクトを育てられるエンジニアを目指しています。",
+    ],
+    highlights: [
+      { icon: "GraduationCap", text: "開智国際大学 国際教養学部・2027年3月卒業予定" },
+      { icon: "MapPin", text: "東京在住・ミャンマー出身" },
+      { icon: "Languages", text: "日本語：JLPT N1／英語：TOEIC 830点／ミャンマー語：母語" },
+      { icon: "Heart", text: "関心分野：バックエンド・AI・プロダクト開発" },
+    ],
   },
+  skills: {
+    title: "スキル",
+    subtitle: "個人開発と、実際の利用者がいるアプリの運用で使ってきた技術です。",
+    groups: [
+      { name: "フロントエンド", color: "from-cyan-500 to-blue-500", items: ["Next.js", "React", "TypeScript", "JavaScript", "Tailwind CSS"] },
+      { name: "バックエンド・データベース", color: "from-emerald-500 to-teal-500", items: ["PHP", "Laravel", "PostgreSQL", "MySQL", "Supabase", "Eloquent ORM", "REST API設計"] },
+      { name: "オフライン対応・データ整合性", color: "from-violet-500 to-purple-500", items: ["PWA", "IndexedDB", "オフライン同期", "冪等性キー", "認証・権限管理"] },
+      { name: "テスト・デプロイ", color: "from-pink-500 to-rose-500", items: ["Vitest", "VPS", "Vercel", "不具合の再現・修正", "利用者による動作確認"] },
+      { name: "プロダクト開発", color: "from-amber-500 to-orange-500", items: ["現場の課題発見", "要件整理", "データベース設計", "利用者の声をもとに改善", "日英対応の画面設計"] },
+    ],
+  },
+  projects: {
+    title: "制作物",
+    subtitle: "業務で利用されているアプリから学習用のシステムまで。課題と、解決のために選んだ技術を紹介します。",
+    items: [
+      {
+        slug: "sugi-sale-app",
+        title: "Sugi Sale App",
+        period: "個人開発・アルバイト先で運用中",
+        tagline: "紙と電卓の集計をWebアプリへ。約2時間の作業を10〜20分に。",
+        description: "販売実績とポイントを紙に記録し、電卓で集計する作業の手間を減らすために開発しました。商品を選ぶだけで記録とポイント計算ができ、現在は同僚7名が利用しています。自分用のツールから始め、利用者のフィードバックを受けて認証・権限管理やオフライン同期を追加しました。",
+        tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "PostgreSQL", "PWA", "IndexedDB", "Vitest", "VPS"],
+        features: ["商品選択による販売実績の記録・ポイント計算", "複数の利用者に対応する認証・権限管理", "IndexedDBで通信が不安定な環境でも入力を継続", "通信復帰後にローカルデータを同期", "冪等性キーで再送時の重複登録を防止", "利用者の声をもとに操作性と運用を改善"],
+        live: null,
+        repo: "https://github.com/heinaungtesting/sugi-sale-app",
+        status: "実務で利用中・同僚7名",
+        accent: "emerald",
+      },
+      {
+        slug: "sportsmatch",
+        title: "SportsMatch Tokyo",
+        period: "2026年3月〜・個人開発",
+        tagline: "東京でスポーツをしたい人と、参加できる場をつなぐ。",
+        description: "スポーツ仲間や参加できるコミュニティを探す手間と、言語の壁を減らすために開発したWebサービスです。スポーツ・日時・場所からセッションを探し、参加や新規作成ができます。日本語と英語に対応し、初めて使う人にも分かりやすい操作を目指して改善しています。",
+        tech: ["Next.js", "React", "TypeScript", "Supabase", "PostgreSQL", "Tailwind CSS", "Vercel"],
+        features: ["ユーザー認証", "セッションの一覧・詳細表示", "スポーツや日付による絞り込み", "セッションの作成・参加", "日本語・英語に対応した画面", "レスポンシブ対応と操作性の改善"],
+        live: "https://sportsmatch-tokyo.vercel.app",
+        repo: "https://github.com/heinaungtesting/webresevation",
+        status: "品質・操作性を改善中",
+        accent: "cyan",
+      },
+      {
+        slug: "pos",
+        title: "POS / EC 管理システム",
+        period: "個人開発・学習用",
+        tagline: "商品・カート・注文をつなぎ、バックエンド設計を学ぶ。",
+        description: "Laravelで開発した、店舗・EC向けの商品・注文管理システムです。チュートリアルをなぞるだけでなく、複数の機能が連動するアプリを作ることで、MVC、認証・認可、データベースのリレーション、ORMを実践的に学びました。管理者と一般ユーザーの役割を分け、一連の購入・管理フローを実装しています。",
+        tech: ["PHP", "Laravel", "MySQL", "Eloquent ORM", "Blade", "Tailwind CSS", "Bootstrap", "JavaScript", "jQuery", "Breeze", "Sanctum", "Vite"],
+        features: ["管理者・一般ユーザーの権限分離", "商品・カテゴリーの管理", "商品検索・絞り込み・カート", "購入・注文履歴・決済情報の管理", "評価・コメント・お問い合わせ", "プロフィール管理"],
+        live: null,
+        repo: "https://github.com/heinaungtesting/pos",
+        status: "学習用プロジェクト",
+        accent: "violet",
+      },
+    ],
+  },
+  experience: {
+    title: "経歴",
+    subtitle: "大学での学び、アルバイト、個人開発を両立しています。",
+    items: [
+      { period: "2023年4月〜2027年3月 卒業予定", role: "開智国際大学 国際教養学部", location: "在学中", bullets: ["国際教養学科に在籍", "在学中に独学でWeb開発を学び、個人プロジェクトに取り組む"] },
+      { period: "2023年6月〜2024年6月", role: "バーガーキング", location: "アルバイト", bullets: ["学業と両立しながら勤務"] },
+      { period: "2024年6月〜2025年6月", role: "ラーメン店", location: "アルバイト", bullets: ["飲食店でのアルバイトを継続"] },
+      { period: "2025年6月〜現在", role: "スギ薬局", location: "東京・浅草／アルバイト", bullets: ["外国人のお客様も多い店舗で、レジ・接客業務を担当", "販売実績・ポイント集計の課題を見つけ、業務アプリを個人開発", "同僚7名が利用する仕組みへ広げ、フィードバックをもとに改善"] },
+      { period: "2026年3月〜", role: "SportsMatch Tokyo", location: "個人開発", bullets: ["スポーツ仲間を探すサービスを企画・開発", "認証、セッション検索・作成・参加、日英表示を実装", "不具合の修正と使いやすさの改善に取り組む"] },
+    ],
+  },
+  contact: {
+    title: "お問い合わせ",
+    subtitle: "2027年新卒・Web／フルスタック／バックエンドエンジニア職を志望",
+    blurb: "利用者の課題を理解し、チームで改善を重ねながらプロダクトを育てる仕事がしたいと考えています。採用や開発に関するお話がありましたら、お気軽にご連絡ください。",
+    channels: [
+      { label: "メール", value: "hhamaster199@gmail.com", href: "mailto:hhamaster199@gmail.com", icon: "Mail" },
+      { label: "GitHub", value: "@heinaungtesting", href: "https://github.com/heinaungtesting", icon: "Github" },
+    ],
+  },
+  footer: { built: "Next.js・Tailwind CSS・Framer Motionで制作。", rights: "© 2026 Hein Htet Aung" },
 } as const;
-
-export type Content = (typeof content)[Locale];

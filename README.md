@@ -1,46 +1,44 @@
-# Portfolio — sigmahein.me
+# ヘイン テッ アウンのポートフォリオ
 
-Personal portfolio site for job-hunting (27卒 / 2027 new-grad).
+2027年新卒エンジニア採用に向けた、日本語のポートフォリオサイトです。
 
-## Stack
+## 掲載内容
 
-- **Next.js 16** (App Router, Turbopack)
-- **TypeScript**
-- **Tailwind CSS v4**
-- **Framer Motion** (scroll-triggered animations, stagger, hover micro-interactions)
-- **lucide-react** icons
-- **Vercel** hosting
+- Sugi Sale App：同僚7名が利用する販売実績・ポイント記録アプリ
+- SportsMatch Tokyo：東京でスポーツ仲間を探すサービス
+- POS / EC 管理システム：Laravelによる学習用プロジェクト
+- 自己紹介、スキル、学歴・アルバイト・個人開発の経歴、お問い合わせ
 
-## Features
+本人のプロフィールと開発実績をもとに、公開用の内容に整理しています。元の履歴書や個人プロフィールはリポジトリに含めません。
 
-- Bilingual (EN / JA) with localStorage persistence
-- 5 sections: Hero, About, Skills, Projects, Experience, Contact
-- Framer Motion scroll reveals, hover effects, animated stats, gradient borders
-- Real avatar (`/public/avatar.jpg`)
-- SEO: OpenGraph, Twitter cards, JP keywords for Japanese recruiter search
-- Fully responsive, accessible (semantic HTML, ARIA, keyboard-navigable)
+## 使用技術
 
-## Develop
+Next.js 16（App Router）・TypeScript・Tailwind CSS v4・Framer Motion・lucide-react
+
+## 開発
 
 ```bash
 npm install
 npm run dev
-# http://localhost:3000
 ```
 
-## Build
+## 確認
 
 ```bash
+npx tsc --noEmit
 npm run build
 npm start
 ```
 
-## Deploy
+## 編集箇所
 
-Pushes to `main` auto-deploy via Vercel.
+- `lib/content.ts`：日本語の本文とプロジェクト情報
+- `components/`：各セクションの表示
+- `app/layout.tsx`：日本語のページ情報・検索結果・共有用メタデータ
+- `public/avatar.jpg`：プロフィール写真
 
-## Repo notes
+言語切り替えはなく、初回表示から日本語です。
 
-- Single source of content: `lib/content.ts` (bilingual)
-- Components in `components/`
-- Custom SVG icon for GitHub (lucide-react dropped trademark-protected icons)
+## 公開
+
+`main`へのプッシュでVercelに自動デプロイされる設定です。変更はブランチ上で確認してから反映します。

@@ -1,20 +1,14 @@
 "use client";
-
 import { motion } from "framer-motion";
-import { useLocale } from "@/components/Providers";
 import { content } from "@/lib/content";
 
 export function Skills() {
-  const { locale } = useLocale();
-  const t = content[locale].skills;
+  const t = content.skills;
 
-  // Key includes locale so the section fully remounts on language switch —
-  // this resets all Framer Motion `whileInView` state cleanly and avoids the
-  // "section disappears after JA toggle" bug.
   return (
     <section
       id="skills"
-      key={`skills-${locale}`}
+
       className="relative py-32 px-6"
     >
       <div className="container mx-auto max-w-6xl">

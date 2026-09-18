@@ -1,40 +1,43 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Providers } from "@/components/Providers";
+
+const title = "ヘイン テッ アウン｜フルスタック開発者・2027年新卒";
+const description =
+  "開智国際大学を2027年3月卒業予定。独学でWeb開発を学び、同僚7名が使うSugi Sale App、SportsMatch Tokyo、POS・EC管理システムを個人開発。現場の課題発見から開発・運用・改善まで取り組んでいます。";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://sigmahein.me"),
-  title: "Hein Htet Aung — AI Engineer / Full-Stack Developer",
-  description:
-    "Fourth-year student at Kaichi International University. Building production web apps — Next.js, Supabase, Laravel, Python — and shipping them to live users. Open to 2027 new-graduate roles.",
+  title,
+  description,
   keywords: [
     "Hein Htet Aung",
-    "AI Engineer",
-    "Full-Stack Developer",
+    "ヘイン テッ アウン",
+    "フルスタック開発者",
+    "バックエンドエンジニア",
+    "Sugi Sale App",
     "Next.js",
     "Supabase",
     "Laravel",
     "2027 新卒",
     "27卒",
     "留学生 エンジニア",
-    "Tokyo",
-    "Portfolio",
+    "東京",
+    "ポートフォリオ",
   ],
   authors: [{ name: "Hein Htet Aung" }],
   creator: "Hein Htet Aung",
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "ja_JP",
     url: "https://sigmahein.me",
-    title: "Hein Htet Aung — AI Engineer / Full-Stack Developer",
-    description:
-      "Fourth-year student at Kaichi International University. Building production web apps and shipping them to live users.",
-    siteName: "Hein Htet Aung — Portfolio",
+    title,
+    description,
+    siteName: "ヘイン テッ アウンのポートフォリオ",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hein Htet Aung — AI Engineer / Full-Stack Developer",
-    description: "Production web apps · Next.js · Supabase · Laravel · Python",
+    title,
+    description,
   },
   robots: { index: true, follow: true },
 };
@@ -43,9 +46,9 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="ja" className="dark">
       <body className="min-h-screen antialiased">
-        <Providers>{children}</Providers>
+        {children}
       </body>
     </html>
   );

@@ -1,14 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useLocale } from "@/components/Providers";
 import { content } from "@/lib/content";
 import { ArrowDown, Sparkles } from "lucide-react";
 import { ParticleNetwork } from "@/components/ParticleNetwork";
 
 export function Hero() {
-  const { locale } = useLocale();
-  const t = content[locale].hero;
+  const t = content.hero;
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
@@ -165,7 +163,7 @@ export function Hero() {
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             className="flex flex-col items-center gap-2 text-[var(--fg-3)]"
           >
-            <span className="text-xs uppercase tracking-widest">scroll</span>
+            <span className="text-xs uppercase tracking-widest">下へスクロール</span>
             <ArrowDown className="size-4" />
           </motion.div>
         </motion.div>
