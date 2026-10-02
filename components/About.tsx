@@ -105,7 +105,7 @@ export function About() {
                 fill
                 priority
                 sizes="280px"
-                className="object-cover"
+                className="object-cover object-top"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg)]/40 to-transparent" />
             </div>
