@@ -2,10 +2,10 @@
 
 import { motion } from "framer-motion";
 import { content } from "@/lib/content";
-import { GraduationCap, MapPin, Languages, Heart } from "lucide-react";
+import { GraduationCap, MapPin, Languages, Heart, BookOpen, Trophy } from "lucide-react";
 import Image from "next/image";
 
-const ICONS: Record<string, any> = { GraduationCap, MapPin, Languages, Heart };
+const ICONS: Record<string, any> = { GraduationCap, MapPin, Languages, Heart, BookOpen, Trophy };
 
 export function About() {
   const t = content.about;
@@ -62,6 +62,11 @@ export function About() {
                   </motion.li>
                 ))}
               </ol>
+            </div>
+
+            <div className="pt-4">
+              <h4 className="text-lg font-semibold mb-3">{t.careerTitle}</h4>
+              <p className="text-[var(--fg-2)] leading-relaxed border-l-2 border-[var(--accent)] pl-4">{t.career}</p>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-3 pt-4">

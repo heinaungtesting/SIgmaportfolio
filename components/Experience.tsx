@@ -31,75 +31,45 @@ export function Experience() {
           {t.subtitle}
         </motion.p>
 
-        <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[var(--border-strong)] to-transparent -translate-x-1/2 hidden md:block" />
-
-          <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={{ hidden: {}, show: { transition: { staggerChildren: 0.15 } } }}
-            className="space-y-12"
-          >
-            {t.items.map((item, idx) => (
-              <motion.div
-                key={idx}
+        <motion.ol
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.12 } } }}
+          className="relative max-w-3xl space-y-6 border-l border-[var(--border-strong)] ml-2"
+        >
+          {t.items.map((item, idx) => {
+            const color = idx % 2 === 0 ? "var(--accent)" : "var(--accent-2)";
+            return (
+              <motion.li
+                key={item.role}
                 variants={{
                   hidden: { opacity: 0, y: 30 },
                   show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
                 }}
-                className={`md:grid md:grid-cols-2 md:gap-12 ${
-                  idx % 2 === 0 ? "" : "md:[&>div:first-child]:col-start-2"
-                }`}
+                className="relative pl-8"
               >
-                {idx % 2 === 0 ? (
-                  <>
-                    <div className="md:text-right">
-                      <div className="card p-6 inline-block text-left">
-                        <div className="text-xs font-mono text-[var(--accent)] mb-2">{item.period}</div>
-                        <h3 className="text-lg font-semibold mb-1">{item.role}</h3>
-                        <div className="text-sm text-[var(--fg-3)] mb-4">{item.location}</div>
-                        <ul className="space-y-2 text-sm text-[var(--fg-2)]">
-                          {item.bullets.map((b) => (
-                            <li key={b} className="flex items-start gap-2">
-                              <span className="mt-1.5 size-1.5 rounded-full bg-[var(--accent)] shrink-0" />
-                              <span>{b}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                    <div className="hidden md:flex items-center justify-center">
-                      <div className="size-4 rounded-full bg-[var(--accent)] ring-4 ring-[var(--accent)]/20" />
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <div className="hidden md:flex items-center justify-center">
-                      <div className="size-4 rounded-full bg-[var(--accent-2)] ring-4 ring-[var(--accent-2)]/20" />
-                    </div>
-                    <div>
-                      <div className="card p-6 inline-block">
-                        <div className="text-xs font-mono text-[var(--accent-2)] mb-2">{item.period}</div>
-                        <h3 className="text-lg font-semibold mb-1">{item.role}</h3>
-                        <div className="text-sm text-[var(--fg-3)] mb-4">{item.location}</div>
-                        <ul className="space-y-2 text-sm text-[var(--fg-2)]">
-                          {item.bullets.map((b) => (
-                            <li key={b} className="flex items-start gap-2">
-                              <span className="mt-1.5 size-1.5 rounded-full bg-[var(--accent-2)] shrink-0" />
-                              <span>{b}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  </>
-                )}
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
+                <span
+                  className="absolute -left-[7px] top-7 size-3.5 rounded-full ring-4"
+                  style={{ background: color, ["--tw-ring-color" as any]: "rgba(255,255,255,0.06)" }}
+                />
+                <div className="card p-6">
+                  <div className="text-xs font-mono mb-2" style={{ color }}>{item.period}</div>
+                  <h3 className="text-lg font-semibold mb-1">{item.role}</h3>
+                  <div className="text-sm text-[var(--fg-3)] mb-4">{item.location}</div>
+                  <ul className="space-y-2 text-sm text-[var(--fg-2)]">
+                    {item.bullets.map((b) => (
+                      <li key={b} className="flex items-start gap-2">
+                        <span className="mt-1.5 size-1.5 rounded-full shrink-0" style={{ background: color }} />
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.li>
+            );
+          })}
+        </motion.ol>
       </div>
     </section>
   );

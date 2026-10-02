@@ -102,6 +102,18 @@ export function Projects() {
                     {p.description}
                   </p>
 
+                  <div className="grid md:grid-cols-2 gap-4 mb-6">
+                    {[
+                      { label: "開発のきっかけ・学び", text: p.background },
+                      { label: "今後の展望", text: p.future },
+                    ].map((b) => (
+                      <div key={b.label} className="rounded-xl border border-[var(--border)] bg-white/[0.02] p-4">
+                        <div className="text-xs font-semibold mb-1.5" style={{ color: accent.from }}>{b.label}</div>
+                        <p className="text-sm text-[var(--fg-2)] leading-relaxed">{b.text}</p>
+                      </div>
+                    ))}
+                  </div>
+
                   <div className="grid sm:grid-cols-2 gap-x-8 gap-y-2 mb-6">
                     {p.features.map((f) => (
                       <div key={f} className="flex items-start gap-2 text-sm text-[var(--fg-2)]">
