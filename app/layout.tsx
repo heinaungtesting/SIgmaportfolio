@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-const title = "ヘイン テッ アウン｜フルスタック開発者・2027年新卒";
+const title = "ヘイン テッ アウン｜Webエンジニア志望・2027年新卒";
 const description =
   "開智国際大学を2027年3月卒業予定。独学でWeb開発を学び、同僚7名が使うSugi Sale App、SportsMatch Tokyo、POS・EC管理システムを個人開発。現場の課題発見から開発・運用・改善まで取り組んでいます。";
 
@@ -12,7 +12,8 @@ export const metadata: Metadata = {
   keywords: [
     "Hein Htet Aung",
     "ヘイン テッ アウン",
-    "フルスタック開発者",
+    "Webエンジニア",
+    "フルスタック",
     "バックエンドエンジニア",
     "Sugi Sale App",
     "Next.js",
