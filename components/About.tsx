@@ -2,10 +2,10 @@
 
 import { motion } from "framer-motion";
 import { content } from "@/lib/content";
-import { GraduationCap, MapPin, Languages, Heart } from "lucide-react";
+import { GraduationCap, MapPin, Languages, Heart, BookOpen, Trophy } from "lucide-react";
 import Image from "next/image";
 
-const ICONS: Record<string, any> = { GraduationCap, MapPin, Languages, Heart };
+const ICONS: Record<string, any> = { GraduationCap, MapPin, Languages, Heart, BookOpen, Trophy };
 
 export function About() {
   const t = content.about;
@@ -40,6 +40,33 @@ export function About() {
               {t.body.map((p, i) => (
                 <p key={i}>{p}</p>
               ))}
+            </div>
+
+            <div className="pt-4">
+              <h4 className="text-lg font-semibold mb-4">{t.strengthsTitle}</h4>
+              <ol className="space-y-3">
+                {t.strengths.map((s, i) => (
+                  <motion.li
+                    key={s.title}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: i * 0.08 }}
+                    className="card p-5 flex gap-4"
+                  >
+                    <span className="text-sm font-mono text-[var(--accent)] pt-0.5">0{i + 1}</span>
+                    <div>
+                      <div className="font-semibold mb-1">{s.title}</div>
+                      <p className="text-sm text-[var(--fg-2)] leading-relaxed">{s.text}</p>
+                    </div>
+                  </motion.li>
+                ))}
+              </ol>
+            </div>
+
+            <div className="pt-4">
+              <h4 className="text-lg font-semibold mb-3">{t.careerTitle}</h4>
+              <p className="text-[var(--fg-2)] leading-relaxed border-l-2 border-[var(--accent)] pl-4">{t.career}</p>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-3 pt-4">

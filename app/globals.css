@@ -35,6 +35,9 @@ body {
   font-family:
     "Inter", ui-sans-serif, system-ui, -apple-system, "Hiragino Sans",
     "Yu Gothic UI", "Noto Sans JP", sans-serif;
+  /* 日本語の禁則処理と、文節単位での自然な改行 */
+  line-break: strict;
+  word-break: auto-phrase;
 }
 
 ::selection {
@@ -172,4 +175,66 @@ body {
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
   background-size: 200% 100%;
   animation: shimmer 3s linear infinite;
+}
+
+/* 印刷・PDF保存用：採用担当者が紙やPDFで確認しても全内容が読めるようにする */
+@media print {
+  @page {
+    margin: 14mm;
+  }
+  :root {
+    --bg: #fff;
+    --bg-2: #fff;
+    --fg: #111;
+    --fg-2: #333;
+    --fg-3: #555;
+    --border: #ccc;
+    --border-strong: #999;
+    --accent: #0e7490;
+    --accent-2: #6d28d9;
+  }
+  html,
+  body {
+    background: #fff !important;
+    color: #111 !important;
+  }
+  /* スクロール前のアニメーションで非表示のままの要素を表示する */
+  * {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+  header,
+  canvas,
+  #hero .animate-ping,
+  #hero > .absolute,
+  #hero .absolute.bottom-10,
+  article > .absolute.inset-0,
+  #about .aspect-square > .absolute.-bottom-3 {
+    display: none !important;
+  }
+  section {
+    min-height: 0 !important;
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+  #hero > .relative {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  .glow-text {
+    background: none;
+    color: #111;
+  }
+  .card,
+  article,
+  #about .aspect-square {
+    break-inside: avoid;
+    background: #fff !important;
+  }
+  .gradient-border::before {
+    display: none;
+  }
 }
